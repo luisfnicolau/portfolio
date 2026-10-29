@@ -60,11 +60,13 @@ export const employment: Role[] = [
       en: [
         "Co-founded the company and led engineering for edtech apps that grew past 100,000 users on web and mobile.",
         "Chose the stack and the delivery process; scaled and evolved the PHP (Laravel) backend in production, and moved the data architecture from flat structures to a relational model.",
+        "Helped build machine-learning models that recommended content to students and predicted their performance with Item Response Theory (IRT); my main part was deploying them to production.",
         "The company reached a ~R$100M valuation.",
       ],
       pt: [
         "Cofundei a empresa e liderei a engenharia de apps de edtech que passaram de 100 mil usuários na web e no mobile.",
         "Escolhi a stack e o processo de entrega; escalei e evoluí o backend em PHP (Laravel) em produção, e levei a arquitetura de dados de estruturas planas para um modelo relacional.",
+        "Ajudei a construir modelos de machine learning que recomendavam conteúdo aos alunos e previam o desempenho deles com a Teoria de Resposta ao Item (TRI); minha parte principal foi colocá-los em produção.",
         "A empresa chegou a um valuation de ~R$ 100 milhões.",
       ],
     },

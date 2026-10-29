@@ -23,7 +23,7 @@ Two root layouts, so `<html lang>` is correct without a redirect at `/`:
 | any unmatched URL | `src/app/global-not-found.tsx` | bilingual 404 (`experimental.globalNotFound`) |
 | `/sitemap.xml`, `/robots.txt` | `src/app/sitemap.ts`, `src/app/robots.ts` | every page, with hreflang alternates |
 | `…/opengraph-image-*` | `opengraph-image.tsx` next to each page | social cards via `next/og` |
-| `/cv/*.pdf` | `public/cv/` | English CV (Luis's file) and Portuguese CV (built from `cv/full-stack-pt.html`) |
+| `/cv/*.pdf` | `public/cv/` | English and Portuguese CVs, both Luis's own files |
 
 Switching language crosses root layouts, which is a full page load; that is fine for a language switch.
 

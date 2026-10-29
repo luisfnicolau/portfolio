@@ -219,7 +219,7 @@ function workStylePassages(): Passage[] {
   ];
 }
 
-const AI_WORK = /\b(AI|LLMs?|Claude|semantic|embeddings?|RAG|Whisper|AI\/ML|agents?)\b/;
+const AI_WORK = /\b(AI|LLMs?|Claude|semantic|embeddings?|RAG|Whisper|AI\/ML|agents?|machine-learning|machine learning)\b/;
 
 /**
  * One passage that spans every AI-related role and project, oldest first, so a broad question

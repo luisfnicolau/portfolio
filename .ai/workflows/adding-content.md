@@ -24,10 +24,9 @@ How to keep the portfolio current. Every change ends with `npm run check`, and w
 - Hero stats, bios, availability, links: `src/content/profile.ts`.
 - Skills: `src/content/skills.ts`; keep `coreStack` years in Luis's own numbers.
 
-## Rebuild the CVs
+## Update the CVs
 
-- English: replace `public/cv/luis-nicolau-full-stack-cv-en.pdf` with Luis's new file (same name).
-- Portuguese: edit `cv/full-stack-pt.html` to match the English CV, then `npm run cv:pdf`. Check it still fits on two A4 pages.
+Luis makes both files. Copy his new PDFs over `public/cv/luis-nicolau-full-stack-cv-en.pdf` and `public/cv/luis-nicolau-full-stack-cv-pt.pdf` (same names), then check the site's facts still match them.
 
 ## Change the photo
 

@@ -7,7 +7,7 @@ export const site = {
   repo: "https://github.com/luisfnicolau/portfolio",
   /** Bump both when the content changes: shown in the footer and used as the sitemap's lastmod. */
   updated: { en: "October 2026", pt: "outubro de 2026" } satisfies Localized,
-  updatedIso: "2026-10-28",
+  updatedIso: "2026-10-29",
 };
 
 export const profile = {

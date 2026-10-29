@@ -30,7 +30,6 @@ Node 22 or newer.
 | `npm run build` | production build |
 | `npm run test:e2e` | Playwright smoke tests against the build (desktop and mobile); `BASE_URL=https://lunico.dev npm run test:e2e` tests the live site |
 | `npm run screenshots -- <name>` | recapture product screenshots into `src/assets/work/` |
-| `npm run cv:pdf` | print the Portuguese CV from `cv/full-stack-pt.html` to `public/cv/` |
 
 Every push to `main` deploys to Vercel, and the Vercel build runs `npm run check` first: a failing check stops the deploy and the live site keeps the last good version.
 

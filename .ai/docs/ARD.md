@@ -35,10 +35,10 @@
 **Decision:** cards drawn by `src/lib/og.tsx` with WOFF files in `src/assets/fonts/` (OFL), traced into functions with `outputFileTracingIncludes`.
 **Why:** consistent branded cards per page and language. Next 16.4's build sometimes leaves some cards for on-demand rendering, so the fonts must ship with the functions.
 
-## ADR-08 · CVs: Luis's English file, a generated Portuguese one
+## ADR-08 · CVs: Luis's own files, in both languages
 
-**Decision:** `public/cv/luis-nicolau-full-stack-cv-en.pdf` is Luis's own final CV; the Portuguese one is printed from `cv/full-stack-pt.html` by Playwright, in the same look (Carlito, navy, A4).
-**Why:** no final Portuguese full-stack PDF existed. Keeping its source in the repo lets it be updated with the site.
+**Decision:** `public/cv/luis-nicolau-full-stack-cv-en.pdf` is Luis's own final CV; the Portuguese one was printed from an HTML translation until 2026-10-29, when Luis started providing his own Portuguese file. Both are now copied in as they are.
+**Why:** at first no final Portuguese full-stack PDF existed. Now that Luis keeps both, a generated copy would only drift from his.
 
 ## ADR-09 · No analytics, no contact form
 

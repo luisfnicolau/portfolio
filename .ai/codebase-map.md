@@ -55,5 +55,5 @@ Which files make up each feature, and their tests. Read the entry for your area 
 ## Scripts and assets
 
 - `scripts/capture-screenshots.mjs` → `src/assets/work/*.webp`.
-- `scripts/build-cv.mjs` + `cv/full-stack-pt.html` → `public/cv/luis-nicolau-full-stack-cv-pt.pdf`.
+- `public/cv/*.pdf`: Luis's own CV files, English and Portuguese, copied in as they are.
 - `src/lib/typography.ts`: `tidy()` keeps numbers with their units; tested in `tests/unit/typography.test.ts`.

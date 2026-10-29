@@ -11,7 +11,6 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check": "npm run lint && npm run typecheck && npm test",
-    "cv:pdf": "node scripts/build-cv.mjs",
     "screenshots": "node scripts/capture-screenshots.mjs"
   },
   "dependencies": {
