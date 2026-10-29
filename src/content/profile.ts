@@ -109,7 +109,7 @@ export const stats: Metric[] = [
     label: { en: "years shipping software", pt: "anos entregando software" },
   },
   {
-    value: { en: "5", pt: "5" },
+    value: { en: "4", pt: "4" },
     label: { en: "products founded and shipped", pt: "produtos fundados e lançados" },
   },
   {

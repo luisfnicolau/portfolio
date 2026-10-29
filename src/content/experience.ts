@@ -113,7 +113,7 @@ export interface TimelineRow {
 export const timeline: TimelineRow[] = [
   { label: "OlhoNaLei", title: { en: "Founder & sole engineer", pt: "Fundador e único engenheiro" }, period: { from: "2026-04", to: "present" }, kind: "founded", slug: "olhonalei" },
   { label: "SenseComment", title: { en: "Founder & engineer", pt: "Fundador e engenheiro" }, period: { from: "2025-07", to: "present" }, kind: "founded", slug: "sensecomment" },
-  { label: "Paneleiros", title: { en: "Principal Engineer", pt: "Engenheiro principal" }, period: { from: "2025-10", to: "2026-09" }, kind: "founded", slug: "paneleiros" },
+  { label: "Paneleiros", title: { en: "Principal Engineer", pt: "Engenheiro principal" }, period: { from: "2025-10", to: "2026-09" }, kind: "employment", slug: "paneleiros" },
   { label: "EcoDoctor", title: { en: "Founder & lead engineer", pt: "Fundador e engenheiro líder" }, period: { from: "2023-07", to: "2025-05" }, kind: "founded", slug: "ecodoctor" },
   { label: "The Contract Network", title: { en: "Senior Full-Stack Engineer", pt: "Engenheiro Full Stack Sênior" }, period: { from: "2023-08", to: "2025-03" }, kind: "employment" },
   { label: "Matrix Energia", title: { en: "Tech Lead", pt: "Tech Lead" }, period: { from: "2022-08", to: "2024-02" }, kind: "employment" },
