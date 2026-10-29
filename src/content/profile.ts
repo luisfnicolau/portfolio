@@ -109,16 +109,16 @@ export const stats: Metric[] = [
     label: { en: "years shipping software", pt: "anos entregando software" },
   },
   {
-    value: { en: "167k+", pt: "167 mil+" },
-    label: { en: "federal bills tracked by OlhoNaLei", pt: "projetos de lei acompanhados no OlhoNaLei" },
+    value: { en: "5", pt: "5" },
+    label: { en: "products founded and shipped", pt: "produtos fundados e lançados" },
   },
   {
-    value: { en: "1.85 s → 8 ms", pt: "1,85 s → 8 ms" },
-    label: { en: "vector search, ~220× faster", pt: "busca vetorial, ~220× mais rápida" },
+    value: { en: "R$5M+", pt: "R$ 5 mi+" },
+    label: { en: "processed by my payments startup in year one", pt: "processados pela minha startup de pagamentos no 1º ano" },
   },
   {
-    value: { en: "500+", pt: "500+" },
-    label: { en: "paying subscribers at SenseComment", pt: "assinantes pagantes no SenseComment" },
+    value: { en: "29k+", pt: "29 mil+" },
+    label: { en: "AI analyses from my Claude pipeline", pt: "análises de IA do meu pipeline com Claude" },
   },
   {
     value: { en: "100k+", pt: "100 mil+" },
