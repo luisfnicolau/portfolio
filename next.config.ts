@@ -1,3 +1,4 @@
+import { withBotId } from "botid/next/config";
 import type { NextConfig } from "next";
 import { projectSlugs } from "./src/content/slugs";
 
@@ -35,7 +36,8 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        // Everything but BotID's proxied challenge path, which sets its own framing headers.
+        source: "/((?!149e9513-01fa-4fb0-aad4-566afd725d1b/).*)",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -56,4 +58,5 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// BotID proxies its challenge script through this site; see src/instrumentation-client.ts.
+export default withBotId(nextConfig);

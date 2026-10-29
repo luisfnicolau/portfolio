@@ -7,7 +7,8 @@ import { expect, test, type Page } from "@playwright/test";
 function watchErrors(page: Page) {
   const errors: string[] = [];
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    // WebKit reports a link prefetch cut off by the next navigation as an "access control" error.
+    if (message.type() === "error" && !/_rsc=.* due to access control checks/.test(message.text())) errors.push(message.text());
   });
   page.on("pageerror", (error) => errors.push(error.message));
   return errors;
@@ -60,13 +61,50 @@ test.describe("home", () => {
     await expect(html).toHaveAttribute("data-theme", "dark");
   });
 
-  test("Ask answers a suggestion and a typed question", async ({ page }) => {
+  test("Ask streams an AI answer with cited sources", async ({ page }) => {
+    // The model is mocked: this checks the page's side of the /api/ask protocol, for free.
+    let sent: Record<string, unknown> = {};
+    await page.route("**/api/ask", async (route) => {
+      sent = route.request().postDataJSON();
+      const events = [
+        {
+          type: "meta",
+          model: "anthropic/claude-haiku-5.5",
+          mode: "hybrid",
+          sources: [
+            { n: 1, title: "Quick facts, availability and contact", href: "/#contact" },
+            { n: 2, title: "OlhoNaLei: highlights and stack", href: "/work/olhonalei" },
+          ],
+        },
+        { type: "text", text: "Luis took the search path from ~1.85 s to ~8 ms " },
+        { type: "text", text: "on PostgreSQL + pgvector [2]." },
+        { type: "done" },
+      ];
+      await route.fulfill({
+        contentType: "application/x-ndjson",
+        body: events.map((event) => JSON.stringify(event)).join("\n") + "\n",
+      });
+    });
     await page.goto("/");
-    await page.getByRole("button", { name: "Are you available?" }).click();
-    await expect(page.getByText("full-time or contract roles, remote from Campo Grande").first()).toBeVisible();
     await page.getByLabel("Your question").fill("how fast is the vector search?");
     await page.getByLabel("Your question").press("Enter");
     const log = page.locator('[aria-live="polite"]').first();
+    await expect(log.getByText("~1.85 s to ~8 ms")).toBeVisible();
+    await expect(log.getByRole("link", { name: "2", exact: true })).toHaveAttribute("href", "/work/olhonalei");
+    await expect(log.getByRole("link", { name: "OlhoNaLei" })).toHaveAttribute("href", "/work/olhonalei");
+    await expect(log.getByText("Claude Haiku 5.5 · hybrid RAG · 2 passages")).toBeVisible();
+    expect(sent).toMatchObject({ question: "how fast is the vector search?", history: [], locale: "en" });
+  });
+
+  test("Ask falls back to instant answers when the AI is unavailable", async ({ page }) => {
+    await page.route("**/api/ask", (route) => route.fulfill({ status: 503, json: { error: "disabled" } }));
+    await page.goto("/");
+    await page.getByRole("button", { name: "Are you available?" }).click();
+    const log = page.locator('[aria-live="polite"]').first();
+    await expect(log.getByText("The AI chat is unavailable right now")).toBeVisible();
+    await expect(log.getByText("full-time or contract roles, remote from Campo Grande").first()).toBeVisible();
+    await page.getByLabel("Your question").fill("how fast is the vector search?");
+    await page.getByLabel("Your question").press("Enter");
     await expect(log.getByText("~1,850").first()).toBeVisible();
     await expect(log.getByRole("link", { name: "OlhoNaLei" })).toHaveAttribute("href", "/work/olhonalei");
   });

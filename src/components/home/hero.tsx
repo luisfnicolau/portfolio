@@ -102,6 +102,7 @@ export function Hero({ locale }: { locale: Locale }) {
             </div>
           </div>
           <Ask
+            locale={locale}
             entries={entries}
             fallback={{ answer: fallbackAnswer[locale], links: resolveLinks(fallbackLinks, locale) }}
             copy={t.ask}

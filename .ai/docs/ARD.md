@@ -55,3 +55,8 @@
 **Decision:** `src/proxy.ts` redirects visitors who prefer Portuguese (Accept-Language, else IP country) from English URLs to `/pt`; an explicit choice from the language switch is kept in a cookie and wins. `/pt` is never redirected.
 **Why:** Brazilian visitors should see Portuguese without hunting for a switch, while the main audience (international recruiters) and crawlers keep English at lunico.dev. The browser language is a better signal than the IP: a Brazilian recruiter at a US company may well browse in English. Only one-way redirects keep both languages indexable.
 
+
+## ADR-12 · The Ask box is a grounded RAG chat, with the keyword engine as its fallback
+
+**Decision:** `/api/ask` answers with Claude Haiku through Vercel AI Gateway (OIDC, no keys), from passages built out of `src/content` (`src/lib/chat/corpus.ts`). Retrieval is hybrid: BM25 plus multilingual embeddings (computed once per server instance), merged with reciprocal rank fusion. Abuse is limited in layers: Vercel Firewall rate limits on the path (8/min, 40/hour per IP), BotID, an origin check, input limits, an in-memory limiter per instance, a $10/month AI Gateway budget on the project, and `ASK_LLM=off` as a kill switch. Whenever the AI can't answer, the page uses the old keyword answers.
+**Why:** a real LLM pipeline shows the skill the site claims, but it must never say something untrue about Luis or run up a bill. The corpus is the site's own content, so the chat can't drift from the pages. Only the visitor's questions come back from the browser, never earlier answers, so forged history can't be injected. Answers are plain text with numbered citations, rendered by the page, so the model can't emit links or HTML.
