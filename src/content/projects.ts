@@ -5,6 +5,7 @@ import medhaShot from "@/assets/work/medha.webp";
 import olhonaleiShot from "@/assets/work/olhonalei.webp";
 import outpostShot from "@/assets/work/outpost.webp";
 import paneleirosShot from "@/assets/work/paneleiros.webp";
+import sensecommentShot from "@/assets/work/sensecomment.webp";
 import type { Project } from "./types";
 
 /**
@@ -219,19 +220,20 @@ export const projects: Project[] = [
     name: "SenseComment",
     kind: "product",
     role: { en: "Founder & engineer", pt: "Fundador e engenheiro" },
-    period: { from: "2025-07", to: "2026-04" },
+    period: { from: "2025-07", to: "present" },
+    status: "live",
     tagline: {
-      en: "SaaS built on the YouTube APIs, with Hotmart payments, grown to 500+ paying subscribers.",
-      pt: "SaaS construído sobre as APIs do YouTube, com pagamentos Hotmart, que chegou a 500+ assinantes pagantes.",
+      en: "AI-powered YouTube comment analysis that filters toxicity and spam and finds leads; 500+ paying subscribers.",
+      pt: "Análise de comentários do YouTube com IA, que filtra toxicidade e spam e encontra leads; mais de 500 assinantes pagantes.",
     },
     summary: {
       en: [
-        "A SaaS built on top of the YouTube APIs, with payments through Hotmart, a Brazilian platform for digital products.",
-        "I built and ran it as the primary engineer, owning it end to end: product, backend, payments, deploys and support. It grew from zero to 500+ paying subscribers.",
+        "A SaaS built on top of the YouTube APIs: AI-powered comment analysis that filters toxic comments, detects spam ads, finds leads, and lets channel owners chat with AI about their audience. Payments run through Hotmart, a Brazilian platform for digital products.",
+        "I built and ran it as the primary engineer, owning it end to end: product, backend, payments, deploys and support. It grew from zero to 500+ paying subscribers, and it is live in low-maintenance mode.",
       ],
       pt: [
-        "Um SaaS construído sobre as APIs do YouTube, com pagamentos pela Hotmart.",
-        "Construí e operei o produto como engenheiro principal, de ponta a ponta: produto, backend, pagamentos, deploys e suporte. Ele cresceu do zero para mais de 500 assinantes pagantes.",
+        "Um SaaS construído sobre as APIs do YouTube: análise de comentários com IA que filtra comentários tóxicos, detecta anúncios de spam, encontra leads e permite conversar com a IA sobre o público do canal. Os pagamentos passam pela Hotmart.",
+        "Construí e operei o produto como engenheiro principal, de ponta a ponta: produto, backend, pagamentos, deploys e suporte. Ele cresceu do zero para mais de 500 assinantes pagantes e está no ar, em modo de baixa manutenção.",
       ],
     },
     highlights: {
@@ -271,9 +273,13 @@ export const projects: Project[] = [
       "Qdrant",
       "Hotmart",
     ],
-    poster: {
-      figure: { en: "500+", pt: "500+" },
-      caption: { en: "paying subscribers", pt: "assinantes pagantes" },
+    links: [{ kind: "site", href: "https://www.sensecomment.com" }],
+    image: {
+      src: sensecommentShot,
+      alt: {
+        en: "sensecomment.com home page: “Stop toxic comments before they hurt”, AI-powered YouTube comment analysis.",
+        pt: "Página inicial do sensecomment.com: “Stop toxic comments before they hurt”, análise de comentários do YouTube com IA.",
+      },
     },
     caseStudies: [
       {

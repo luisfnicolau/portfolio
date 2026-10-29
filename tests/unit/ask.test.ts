@@ -36,6 +36,7 @@ describe("matchIntent", () => {
     ["What programming languages do you use?", "stack"],
     ["What time zone are you in?", "location"],
     ["push notifications at scale", "paneleiros"],
+    ["filtering toxic YouTube comments", "sensecomment"],
     ["Who are you?", "who"],
     ["hello", "greeting"],
     ["Qual sua experiência?", "experience"],

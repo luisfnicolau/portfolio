@@ -20,6 +20,7 @@ const SHOTS = [
   { name: "outpost", url: "https://outpost.lunico.dev" },
   { name: "chamego", url: "https://www.chamego.app" },
   { name: "paneleiros", url: "https://www.paneleiros.com" },
+  { name: "sensecomment", url: "https://www.sensecomment.com" },
   { name: "agendinha", url: "https://agendinha-cliente.vercel.app/salon/demo/atelie" },
 ];
 
