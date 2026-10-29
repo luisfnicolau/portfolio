@@ -72,7 +72,8 @@ export interface Project {
   metrics?: Metric[];
   stack: string[];
   links?: ProjectLink[];
-  image?: { src: StaticImageData; alt: Localized };
+  /** One screenshot, or one per language when the product's own site has both. */
+  image?: { src: StaticImageData | Localized<StaticImageData>; alt: Localized };
   /** Card art when there is no screenshot: one big figure and its caption. */
   poster?: { figure: Localized; caption: Localized };
   caseStudies?: CaseStudy[];

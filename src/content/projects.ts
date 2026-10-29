@@ -1,12 +1,13 @@
 import agendinhaShot from "@/assets/work/agendinha.webp";
 import chamegoShot from "@/assets/work/chamego.webp";
 import loreShot from "@/assets/work/lore.webp";
-import medhaShot from "@/assets/work/medha.webp";
+import medhaShotEn from "@/assets/work/medha-en.webp";
+import medhaShotPt from "@/assets/work/medha-pt.webp";
 import olhonaleiShot from "@/assets/work/olhonalei.webp";
 import outpostShot from "@/assets/work/outpost.webp";
 import paneleirosShot from "@/assets/work/paneleiros.webp";
 import sensecommentShot from "@/assets/work/sensecomment.webp";
-import type { Project } from "./types";
+import type { Locale, Project } from "./types";
 
 /**
  * Every project on the site, in display order within its kind.
@@ -559,9 +560,9 @@ export const projects: Project[] = [
     ],
     links: [{ kind: "site", href: "https://medha.app" }],
     image: {
-      src: medhaShot,
+      src: { en: medhaShotEn, pt: medhaShotPt },
       alt: {
-        en: "medha.app home page: “Um segundo cérebro que continua seu.”",
+        en: "medha.app home page: “A second brain that stays yours.”",
         pt: "Página inicial do medha.app: “Um segundo cérebro que continua seu.”",
       },
     },
@@ -725,6 +726,10 @@ export const projects: Project[] = [
 ];
 
 export const getProject = (slug: string) => projects.find((project) => project.slug === slug);
+
+/** The screenshot in the page's language, when the product has one per language. */
+export const projectImage = (image: NonNullable<Project["image"]>, locale: Locale) =>
+  "src" in image.src ? image.src : image.src[locale];
 
 export const featuredProjects = projects.filter((project) => project.kind !== "lab");
 export const labProjects = projects.filter((project) => project.kind === "lab");

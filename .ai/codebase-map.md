@@ -54,6 +54,6 @@ Which files make up each feature, and their tests. Read the entry for your area 
 
 ## Scripts and assets
 
-- `scripts/capture-screenshots.mjs` → `src/assets/work/*.webp`.
+- `scripts/capture-screenshots.mjs` → `src/assets/work/*.webp` (one per language, `<name>-en/-pt.webp`, for sites with both; `projectImage()` in `projects.ts` picks the page's).
 - `public/cv/*.pdf`: Luis's own CV files, English and Portuguese, copied in as they are.
 - `src/lib/typography.ts`: `tidy()` keeps numbers with their units; tested in `tests/unit/typography.test.ts`.

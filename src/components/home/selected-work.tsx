@@ -1,6 +1,6 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { featuredProjects } from "@/content/projects";
+import { featuredProjects, projectImage } from "@/content/projects";
 import type { Project } from "@/content/types";
 import { getDictionary } from "@/content/ui";
 import { formatPeriod, workPath, type Locale } from "@/lib/i18n";
@@ -55,7 +55,7 @@ function FlagshipCard({ project, locale }: { project: Project; locale: Locale })
             />
             <BrowserFrame url={site?.href} className="relative lg:translate-x-6 lg:translate-y-6">
               <Image
-                src={project.image.src}
+                src={projectImage(project.image, locale)}
                 alt={project.image.alt[locale]}
                 sizes="(min-width: 1024px) 640px, 100vw"
                 placeholder="blur"

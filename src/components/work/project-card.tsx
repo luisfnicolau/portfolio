@@ -7,6 +7,7 @@ import { formatPeriod, workPath, type Locale } from "@/lib/i18n";
 import { ChipList } from "../ui/chip";
 import { StatusBadge } from "../ui/status-badge";
 import { Poster } from "./poster";
+import { projectImage } from "@/content/projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -30,7 +31,7 @@ export function ProjectCard({ project, locale, sizes, className = "" }: ProjectC
       <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-surface-2">
         {project.image ? (
           <Image
-            src={project.image.src}
+            src={projectImage(project.image, locale)}
             alt={project.image.alt[locale]}
             sizes={sizes}
             placeholder="blur"

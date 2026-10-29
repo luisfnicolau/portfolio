@@ -6,6 +6,11 @@
 // Shots are taken at 1440×900 CSS px, 2× density, dark color scheme, then saved as
 // WebP in src/assets/work/. Pick pages without third-party content in view (the
 // OlhoNaLei home has a live political news sidebar, so a bill page is used instead).
+//
+// A site that has both languages gets `languages: true`: it is captured once with an English
+// browser and once with a Brazilian one (`<name>-en.webp`, `<name>-pt.webp`), and each page of
+// the portfolio shows its own language. Give `urls: { en, pt }` when the site switches by URL
+// instead of by browser language. Every other site is captured once (`<name>.webp`).
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
@@ -15,7 +20,7 @@ const OUT = join(import.meta.dirname, "..", "src", "assets", "work");
 
 const SHOTS = [
   { name: "olhonalei", url: "https://www.olhonalei.com/proposicoes/plp-68-2024-camara" },
-  { name: "medha", url: "https://medha.app" },
+  { name: "medha", url: "https://medha.app", languages: true },
   { name: "lore", url: "https://lorememory.ai" },
   { name: "outpost", url: "https://outpost.lunico.dev" },
   { name: "chamego", url: "https://www.chamego.app" },
@@ -33,26 +38,34 @@ if (todo.length === 0) {
 
 await mkdir(OUT, { recursive: true });
 const browser = await chromium.launch();
-const context = await browser.newContext({
-  viewport: { width: 1440, height: 900 },
-  deviceScaleFactor: 2,
-  colorScheme: "dark",
-  locale: "pt-BR",
-});
+const browserLocale = { en: "en-US", pt: "pt-BR" };
 
 for (const shot of todo) {
-  const page = await context.newPage();
-  try {
-    await page.goto(shot.url, { waitUntil: "networkidle", timeout: 45_000 });
-  } catch (error) {
-    console.warn(`${shot.name}: page did not go idle (${error.message.split("\n")[0]}), capturing anyway`);
+  const variants = shot.languages
+    ? ["en", "pt"].map((language) => ({ language, file: `${shot.name}-${language}`, url: shot.urls?.[language] ?? shot.url }))
+    : [{ language: "pt", file: shot.name, url: shot.url }];
+  for (const variant of variants) {
+    const context = await browser.newContext({
+      viewport: { width: 1440, height: 900 },
+      deviceScaleFactor: 2,
+      colorScheme: "dark",
+      locale: browserLocale[variant.language],
+    });
+    const page = await context.newPage();
+    try {
+      await page.goto(variant.url, { waitUntil: "networkidle", timeout: 45_000 });
+    } catch (error) {
+      console.warn(`${variant.file}: page did not go idle (${error.message.split("\n")[0]}), capturing anyway`);
+    }
+    await page.waitForTimeout(2_500);
+    const png = await page.screenshot(shot.clip ? { clip: shot.clip } : {});
+    const info = await sharp(png)
+      .resize({ width: 1920, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toFile(join(OUT, `${variant.file}.webp`));
+    console.log(`${variant.file}: ${info.width}×${info.height}, ${Math.round(info.size / 1024)} KB`);
+    await context.close();
   }
-  await page.waitForTimeout(2_500);
-  const png = await page.screenshot(shot.clip ? { clip: shot.clip } : {});
-  const file = join(OUT, `${shot.name}.webp`);
-  const info = await sharp(png).resize({ width: 1920, withoutEnlargement: true }).webp({ quality: 80 }).toFile(file);
-  console.log(`${shot.name}: ${info.width}×${info.height}, ${Math.round(info.size / 1024)} KB`);
-  await page.close();
 }
 
 await browser.close();

@@ -14,6 +14,7 @@ How to keep the portfolio current. Every change ends with `npm run check`, and w
    - Every string `{ en, pt }`, same number of items in both.
 4. **Picture:** either a screenshot or a `poster` (a headline figure and caption).
    - Screenshot: add `{ name, url }` to `SHOTS` in `scripts/capture-screenshots.mjs`, run `npm run screenshots -- <name>`, then import `src/assets/work/<name>.webp` in `projects.ts`. Pick a page with no third-party content (news, other people's data) in view.
+   - If the product's site has both languages, add `languages: true` (and `urls: { en, pt }` if it switches by URL rather than by browser language). That writes `<name>-en.webp` and `<name>-pt.webp`; pass `src: { en, pt }` in `projects.ts`, with alt text describing each one.
 5. **Ask box:** add an intent to `src/content/ask.ts` with the project's name (and aliases) as keywords, in the project-name block near the top. Add a line to `tests/unit/ask.test.ts`.
 6. **Experience:** if it's a product Luis founded, add a row to `timeline` in `src/content/experience.ts`.
 7. Bump `site.updated` and `site.updatedIso` in `src/content/profile.ts`.

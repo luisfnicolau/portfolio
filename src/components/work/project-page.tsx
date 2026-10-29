@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { contact } from "@/content/profile";
-import { projects } from "@/content/projects";
+import { projects, projectImage } from "@/content/projects";
 import type { Project } from "@/content/types";
 import { getDictionary } from "@/content/ui";
 import { formatPeriod, otherLocale, sectionPath, workPath, type Locale } from "@/lib/i18n";
@@ -114,7 +114,7 @@ export function ProjectPage({ project, locale }: { project: Project; locale: Loc
             {project.image ? (
               <BrowserFrame url={site?.href} className="reveal">
                 <Image
-                  src={project.image.src}
+                  src={projectImage(project.image, locale)}
                   alt={project.image.alt[locale]}
                   sizes="(min-width: 1152px) 1088px, 100vw"
                   placeholder="blur"

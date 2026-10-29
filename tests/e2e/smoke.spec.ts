@@ -6,11 +6,14 @@ import { expect, test, type Page } from "@playwright/test";
 /** Fails the test on any console error or uncaught exception. */
 function watchErrors(page: Page) {
   const errors: string[] = [];
+  // WebKit reports a link prefetch cut off by the next navigation as an "access control" error.
+  const cancelledPrefetch = /_rsc=.* due to access control checks/;
   page.on("console", (message) => {
-    // WebKit reports a link prefetch cut off by the next navigation as an "access control" error.
-    if (message.type() === "error" && !/_rsc=.* due to access control checks/.test(message.text())) errors.push(message.text());
+    if (message.type() === "error" && !cancelledPrefetch.test(message.text())) errors.push(message.text());
   });
-  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("pageerror", (error) => {
+    if (!cancelledPrefetch.test(error.message)) errors.push(error.message);
+  });
   return errors;
 }
 
@@ -126,6 +129,17 @@ test.describe("project pages", () => {
       await expectNoHorizontalScroll(page);
     }
     expect(errors).toEqual([]);
+  });
+
+  test("a product with both languages shows its screenshot in the page's language", async ({ page }) => {
+    await page.goto("/work/medha");
+    const english = page.getByRole("img", { name: /A second brain that stays yours/ }).first();
+    await expect(english).toBeVisible();
+    const englishSrc = await english.getAttribute("src");
+    await page.goto("/pt/work/medha");
+    const portuguese = page.getByRole("img", { name: /Um segundo cérebro que continua seu/ }).first();
+    await expect(portuguese).toBeVisible();
+    expect(await portuguese.getAttribute("src")).not.toBe(englishSrc);
   });
 
   test("unknown project is a real 404 in both languages", async ({ page }) => {
