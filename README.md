@@ -28,7 +28,7 @@ Node 22 or newer.
 |---|---|
 | `npm run check` | lint, typecheck and unit tests |
 | `npm run build` | production build |
-| `npm run test:e2e` | Playwright smoke tests against the build (desktop and mobile) |
+| `npm run test:e2e` | Playwright smoke tests against the build (desktop and mobile); `BASE_URL=https://lunico.dev npm run test:e2e` tests the live site |
 | `npm run screenshots -- <name>` | recapture product screenshots into `src/assets/work/` |
 | `npm run cv:pdf` | print the Portuguese CV from `cv/full-stack-pt.html` to `public/cv/` |
 
