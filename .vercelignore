@@ -1,0 +1,7 @@
+# Keep CLI deploys to what the build needs (Git deploys only see committed files anyway).
+.env*
+.github/
+.worktrees/
+test-results/
+playwright-report/
+blob-report/
