@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 import { projectSlugs } from "./src/content/slugs";
 
-// Project pages are prerendered for known slugs. Any other slug is rewritten to a path no route
-// matches, so it gets a real 404 status (with Partial Prerendering, notFound() in the page would
-// arrive after a 200 had already started streaming).
+// Project pages are prerendered for known slugs. Any other slug is rewritten to a path no route or
+// file matches, so it gets a real 404 status (with Partial Prerendering, notFound() in the page would
+// arrive after a 200 had already started streaming). Not "/404": Vercel serves that prerendered page
+// as a plain file, with status 200.
 const knownSlug = `(?!(?:${projectSlugs.join("|")})$)[^/]+`;
 
 const nextConfig: NextConfig = {
@@ -24,8 +25,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        { source: `/work/:slug(${knownSlug})`, destination: "/404" },
-        { source: `/pt/work/:slug(${knownSlug})`, destination: "/404" },
+        { source: `/work/:slug(${knownSlug})`, destination: "/_unknown-project" },
+        { source: `/pt/work/:slug(${knownSlug})`, destination: "/_unknown-project" },
       ],
       afterFiles: [],
       fallback: [],
