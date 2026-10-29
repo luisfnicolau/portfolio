@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.lunico.dev" }],
+      "destination": "https://lunico.dev/:path*",
+      "permanent": true
+    }
+  ]
+}
