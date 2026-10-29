@@ -221,30 +221,41 @@ function workStylePassages(): Passage[] {
 
 const AI_WORK = /\b(AI|LLMs?|Claude|semantic|embeddings?|RAG|Whisper|AI\/ML|agents?|machine-learning|machine learning)\b/;
 
+// Using AI to write code is a way of working, not AI work: it goes on its own line, after the timeline.
+const CODING_TOOLS = /AI-assisted|coding agents?|Copilot|Cursor/;
+const aiWork = (text: string) => AI_WORK.test(text) && !CODING_TOOLS.test(text);
+
 /**
- * One passage that spans every AI-related role and project, oldest first, so a broad question
- * ("what has he built with AI?") retrieves the whole arc instead of the single closest project.
+ * One passage with every AI-related role and project in chronological order, so a broad question
+ * ("has he worked with AI?") retrieves the whole arc, from machine learning at Jovens Gênios to
+ * LLMs at The Contract Network to his own products, instead of the single closest project.
  */
 function aiOverviewPassage(): Passage {
   return {
     id: "ai-overview",
-    title: { en: "Luis's AI and LLM work, across roles and products", pt: "Trabalho do Luis com IA e LLMs, em empregos e produtos" },
-    href: both((locale) => sectionPath(locale, "work")),
+    title: {
+      en: "Luis's AI work over time: machine learning, LLMs in a job, then his own AI products",
+      pt: "Trabalho do Luis com IA ao longo do tempo: machine learning, LLMs em emprego e depois produtos próprios",
+    },
+    href: both((locale) => sectionPath(locale, "experience")),
     text: both((locale) => {
       const roles = employment
-        .filter((role) => AI_WORK.test(role.bullets.en.join(" ")))
-        .map((role) => {
-          const picked = role.bullets[locale].filter((_, index) => AI_WORK.test(role.bullets.en[index]));
-          return `- ${role.company}, ${role.title[locale]} (${formatPeriod(role.period, locale)}): ${picked.join(" ")}`;
-        });
-      const products = [...projects]
-        .sort((a, b) => a.period.from.localeCompare(b.period.from))
-        .filter((project) => AI_WORK.test(`${project.tagline.en} ${project.highlights.en.join(" ")}`))
-        .map((project) => {
-          const picked = project.highlights[locale].filter((_, index) => AI_WORK.test(project.highlights.en[index]));
-          return `- ${project.name} (${formatPeriod(project.period, locale)}): ${project.tagline[locale]} ${picked.join(" ")}`.trim();
-        });
-      return lines(...roles, ...products, agentTools[locale]);
+        .filter((role) => role.bullets.en.some(aiWork))
+        .map((role) => ({
+          from: role.period.from,
+          line: `- ${formatPeriod(role.period, locale)}, ${role.company} (${role.title[locale]}, ${locale === "en" ? "job" : "emprego"}): ${role.bullets[locale].filter((_, index) => aiWork(role.bullets.en[index])).join(" ")}`,
+        }));
+      const products = projects
+        .filter((project) => aiWork(project.tagline.en) || project.highlights.en.some(aiWork))
+        .map((project) => ({
+          from: project.period.from,
+          line: `- ${formatPeriod(project.period, locale)}, ${project.name} (${project.role[locale]}): ${[
+            project.tagline[locale],
+            ...project.highlights[locale].filter((_, index) => aiWork(project.highlights.en[index])),
+          ].join(" ")}`,
+        }));
+      const timeline = [...roles, ...products].sort((a, b) => a.from.localeCompare(b.from)).map((entry) => entry.line);
+      return lines(...timeline, `${locale === "en" ? "Tools he codes with" : "Ferramentas com que programa"}: ${agentTools[locale]}`);
     }),
   };
 }

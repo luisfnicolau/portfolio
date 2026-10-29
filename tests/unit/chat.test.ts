@@ -16,6 +16,15 @@ describe("corpus", () => {
     }
   });
 
+  it("tells the AI story in order, without coding tools in the timeline", () => {
+    const text = passages.find((passage) => passage.id === "ai-overview")!.text.en;
+    const timeline = text.split("\n").filter((line) => line.startsWith("- "));
+    expect(timeline[0]).toContain("Jovens Gênios");
+    expect(timeline[1]).toContain("The Contract Network");
+    expect(timeline.join("\n")).not.toMatch(/Copilot|AI-assisted/);
+    expect(text).toMatch(/Tools he codes with: Claude Code/);
+  });
+
   it("never says 'undefined' or 'null'", () => {
     for (const passage of passages) expect(`${passage.text.en} ${passage.text.pt}`, passage.id).not.toMatch(/\b(undefined|null)\b/);
   });
