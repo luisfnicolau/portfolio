@@ -229,23 +229,23 @@ export const projects: Project[] = [
     summary: {
       en: [
         "A SaaS built on top of the YouTube APIs: AI-powered comment analysis that filters toxic comments, detects spam ads, finds leads, and lets channel owners chat with AI about their audience. Payments run through Hotmart, a Brazilian platform for digital products.",
-        "I built and ran it as the primary engineer, owning it end to end: product, backend, payments, deploys and support. It grew from zero to 500+ paying subscribers, and it is live in low-maintenance mode.",
+        "I built and ran it as the primary engineer, owning it end to end: product, backend, payments, deploys and support. It grew from zero to 500+ paying subscribers and $50K+ MRR at peak, and it is live in low-maintenance mode.",
       ],
       pt: [
         "Um SaaS construído sobre as APIs do YouTube: análise de comentários com IA que filtra comentários tóxicos, detecta anúncios de spam, encontra leads e permite conversar com a IA sobre o público do canal. Os pagamentos passam pela Hotmart.",
-        "Construí e operei o produto como engenheiro principal, de ponta a ponta: produto, backend, pagamentos, deploys e suporte. Ele cresceu do zero para mais de 500 assinantes pagantes e está no ar, em modo de baixa manutenção.",
+        "Construí e operei o produto como engenheiro principal, de ponta a ponta: produto, backend, pagamentos, deploys e suporte. Ele cresceu do zero para mais de 500 assinantes pagantes e mais de US$ 50 mil de MRR no pico, e está no ar, em modo de baixa manutenção.",
       ],
     },
     highlights: {
       en: [
-        "Grew it from zero to 500+ paying subscribers as the primary engineer.",
+        "Grew it from zero to 500+ paying subscribers and $50K+ MRR at peak as the primary engineer.",
         "Backend on GCP (Cloud Run, Cloud Functions, Pub/Sub) alongside AWS Lambda and Vercel, with queues and scheduled jobs designed to stay idempotent under retries and concurrent writes, so growth did not create duplicate charges or corrupted data.",
         "RAG support assistant (OpenAI, LangChain, Qdrant) that cut manual support handling by ~60%.",
         "YouTube APIs, Hotmart payments and email/analytics wired up behind audited REST APIs.",
         "Spec-first with AI coding agents: I wrote acceptance criteria, let the agent draft, reviewed its plan and corrected wrong architecture calls before merging. Features shipped in 2–3 days instead of 1–2 weeks.",
       ],
       pt: [
-        "Do zero a mais de 500 assinantes pagantes, como engenheiro principal.",
+        "Do zero a mais de 500 assinantes pagantes e mais de US$ 50 mil de MRR no pico, como engenheiro principal.",
         "Backend na GCP (Cloud Run, Cloud Functions, Pub/Sub) junto com AWS Lambda e Vercel, com filas e jobs agendados idempotentes sob retentativas e escritas concorrentes, para que o crescimento não gerasse cobranças duplicadas nem dados corrompidos.",
         "Assistente de suporte com RAG (OpenAI, LangChain, Qdrant) que reduziu o atendimento manual em ~60%.",
         "APIs do YouTube, pagamentos Hotmart e e-mail/analytics integrados por trás de APIs REST auditadas.",
@@ -254,6 +254,7 @@ export const projects: Project[] = [
     },
     metrics: [
       { value: { en: "500+", pt: "500+" }, label: { en: "paying subscribers", pt: "assinantes pagantes" } },
+      { value: { en: "$50K+", pt: "US$ 50 mil+" }, label: { en: "MRR at peak", pt: "de MRR no pico" } },
       { value: { en: "~60%", pt: "~60%" }, label: { en: "less manual support", pt: "menos atendimento manual" } },
       { value: { en: "2–3 days", pt: "2–3 dias" }, label: { en: "per feature, down from 1–2 weeks", pt: "por feature, antes 1–2 semanas" } },
     ],
@@ -302,8 +303,8 @@ export const projects: Project[] = [
           ],
         },
         result: {
-          en: "500+ paying subscribers and ~60% less manual support.",
-          pt: "Mais de 500 assinantes pagantes e ~60% menos atendimento manual.",
+          en: "500+ paying subscribers, $50K+ MRR at peak and ~60% less manual support.",
+          pt: "Mais de 500 assinantes pagantes, mais de US$ 50 mil de MRR no pico e ~60% menos atendimento manual.",
         },
       },
     ],

@@ -85,8 +85,8 @@ export const intents: Intent[] = [
       "comments", "comment analysis", "spam", "leads", "comentarios", "toxicos", "toxicidade",
     ],
     answer: {
-      en: "SenseComment is AI-powered YouTube comment analysis: it filters toxic comments and spam ads, finds leads, and lets channel owners chat with AI about their audience. As its primary engineer I grew it from zero to 500+ paying subscribers, kept every queue and job idempotent, and built a RAG support assistant that cut manual support by ~60%.",
-      pt: "O SenseComment é análise de comentários do YouTube com IA: filtra comentários tóxicos e anúncios de spam, encontra leads e permite conversar com a IA sobre o público do canal. Como engenheiro principal, levei de zero a mais de 500 assinantes pagantes, mantive filas e jobs idempotentes e construí um assistente de suporte com RAG que reduziu o atendimento manual em ~60%.",
+      en: "SenseComment is AI-powered YouTube comment analysis: it filters toxic comments and spam ads, finds leads, and lets channel owners chat with AI about their audience. As its primary engineer I grew it from zero to 500+ paying subscribers and $50K+ MRR at peak, kept every queue and job idempotent, and built a RAG support assistant that cut manual support by ~60%.",
+      pt: "O SenseComment é análise de comentários do YouTube com IA: filtra comentários tóxicos e anúncios de spam, encontra leads e permite conversar com a IA sobre o público do canal. Como engenheiro principal, levei de zero a mais de 500 assinantes pagantes e mais de US$ 50 mil de MRR no pico, mantive filas e jobs idempotentes e construí um assistente de suporte com RAG que reduziu o atendimento manual em ~60%.",
     },
     links: [
       project("sensecomment", "SenseComment"),
