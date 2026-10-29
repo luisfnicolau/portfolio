@@ -100,10 +100,10 @@ export const intents: Intent[] = [
       "onesignal", "push", "notifications", "notificacoes", "hangfire", "signalr",
     ],
     answer: {
-      en: "Paneleiros is a live football fan app for iPhone and Android. I built its .NET 8 backend: Hangfire jobs follow live matches and push updates over SignalR, with OneSignal notifications and a highlights pipeline.",
-      pt: "O Paneleiros é um app de futebol para torcedores, no iPhone e no Android. Construí o backend em .NET 8: jobs no Hangfire acompanham as partidas ao vivo e enviam atualizações via SignalR, com notificações pela OneSignal e um pipeline de melhores momentos.",
+      en: "Paneleiro is a live football fan app for iPhone and Android. I built its .NET 8 backend: Hangfire jobs follow live matches and push updates over SignalR, with OneSignal notifications and a highlights pipeline.",
+      pt: "O Paneleiro é um app de futebol para torcedores, no iPhone e no Android. Construí o backend em .NET 8: jobs no Hangfire acompanham as partidas ao vivo e enviam atualizações via SignalR, com notificações pela OneSignal e um pipeline de melhores momentos.",
     },
-    links: [project("paneleiros", "Paneleiros")],
+    links: [project("paneleiros", "Paneleiro")],
   },
   {
     id: "ecodoctor",
@@ -267,10 +267,10 @@ export const intents: Intent[] = [
       "incidentes", "producao", "resiliencia", "falha", "falhas", "monitoramento",
     ],
     answer: {
-      en: "I design for retries, idempotency and failure containment. Example: during Brazil national-team games, Paneleiros' post-match notifications exhausted connections and kept re-sending for ~30 minutes. I switched to batched sends, decoupled the “sent” flag from push failures, added a guard against orphaned recurring jobs and data-freshness canaries, and wrote a regression test for each bug.",
-      pt: "Projeto para retentativas, idempotência e contenção de falhas. Exemplo: nos jogos da Seleção, as notificações de fim de jogo do Paneleiros esgotavam as conexões e ficavam reenviando por ~30 minutos. Passei a enviar em lote, desacoplei a marcação de “enviado” das falhas de push, adicionei proteção contra jobs recorrentes órfãos e canários de frescor de dados, e escrevi um teste de regressão para cada bug.",
+      en: "I design for retries, idempotency and failure containment. Example: during Brazil national-team games, Paneleiro's post-match notifications exhausted connections and kept re-sending for ~30 minutes. I switched to batched sends, decoupled the “sent” flag from push failures, added a guard against orphaned recurring jobs and data-freshness canaries, and wrote a regression test for each bug.",
+      pt: "Projeto para retentativas, idempotência e contenção de falhas. Exemplo: nos jogos da Seleção, as notificações de fim de jogo do Paneleiro esgotavam as conexões e ficavam reenviando por ~30 minutos. Passei a enviar em lote, desacoplei a marcação de “enviado” das falhas de push, adicionei proteção contra jobs recorrentes órfãos e canários de frescor de dados, e escrevi um teste de regressão para cada bug.",
     },
-    links: [project("paneleiros", "Paneleiros")],
+    links: [project("paneleiros", "Paneleiro")],
   },
   {
     id: "projects",
@@ -280,8 +280,8 @@ export const intents: Intent[] = [
       "entregou", "entregas", "entregar", "trabalhos", "criou",
     ],
     answer: {
-      en: "Flagship: OlhoNaLei, a civic-tech platform I built alone. Also SenseComment (SaaS, 500+ paying subscribers), Paneleiros (football fan app on both stores) and EcoDoctor (healthcare payments, R$5M+ in year one), plus newer builds: Lore, Medha, Outpost, Chamego and Agendinha.",
-      pt: "O principal é o OlhoNaLei, uma plataforma civic-tech que construí sozinho. Também SenseComment (SaaS, mais de 500 assinantes pagantes), Paneleiros (app de futebol nas duas lojas) e EcoDoctor (pagamentos em saúde, mais de R$ 5 mi no primeiro ano), além dos mais novos: Lore, Medha, Outpost, Chamego e Agendinha.",
+      en: "Flagship: OlhoNaLei, a civic-tech platform I built alone. Also SenseComment (SaaS, 500+ paying subscribers), Paneleiro (football fan app on both stores) and EcoDoctor (healthcare payments, R$5M+ in year one), plus newer builds: Lore, Medha, Outpost, Chamego and Agendinha.",
+      pt: "O principal é o OlhoNaLei, uma plataforma civic-tech que construí sozinho. Também SenseComment (SaaS, mais de 500 assinantes pagantes), Paneleiro (app de futebol nas duas lojas) e EcoDoctor (pagamentos em saúde, mais de R$ 5 mi no primeiro ano), além dos mais novos: Lore, Medha, Outpost, Chamego e Agendinha.",
     },
     links: [links.work, links.labs],
   },
@@ -292,10 +292,10 @@ export const intents: Intent[] = [
       "kotlin", "celular", "aplicativo", "aplicativos",
     ],
     answer: {
-      en: "Mobile work: Paneleiros (Flutter, live on the App Store and Google Play), Chamego (a Flutter baby monitor with peer-to-peer WebRTC video), Outpost (Flutter for iPhone, Android, web and macOS) and Medha's iOS app (Capacitor). Earlier, native Android at Caronaê.",
-      pt: "Mobile: Paneleiros (Flutter, na App Store e no Google Play), Chamego (babá eletrônica em Flutter com vídeo WebRTC direto entre aparelhos), Outpost (Flutter para iPhone, Android, web e macOS) e o app iOS do Medha (Capacitor). Antes, Android nativo na Caronaê.",
+      en: "Mobile work: Paneleiro (Flutter, live on the App Store and Google Play), Chamego (a Flutter baby monitor with peer-to-peer WebRTC video), Outpost (Flutter for iPhone, Android, web and macOS) and Medha's iOS app (Capacitor). Earlier, native Android at Caronaê.",
+      pt: "Mobile: Paneleiro (Flutter, na App Store e no Google Play), Chamego (babá eletrônica em Flutter com vídeo WebRTC direto entre aparelhos), Outpost (Flutter para iPhone, Android, web e macOS) e o app iOS do Medha (Capacitor). Antes, Android nativo na Caronaê.",
     },
-    links: [project("paneleiros", "Paneleiros"), project("chamego", "Chamego")],
+    links: [project("paneleiros", "Paneleiro"), project("chamego", "Chamego")],
   },
   {
     id: "leadership",

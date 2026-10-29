@@ -310,9 +310,9 @@ export const projects: Project[] = [
   },
   {
     slug: "paneleiros",
-    name: "Paneleiros",
+    name: "Paneleiro",
     kind: "product",
-    role: { en: "Principal Engineer · first engineer", pt: "Engenheiro principal · primeiro engenheiro" },
+    role: { en: "Founding Engineer", pt: "Founding Engineer (primeiro engenheiro)" },
     period: { from: "2025-10", to: "2026-09" },
     status: "live",
     tagline: {

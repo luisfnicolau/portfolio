@@ -48,7 +48,7 @@ export const coreStack: { name: string; years: Localized; value: number; note: L
     name: "C# / .NET 8",
     years: { en: "since 2025", pt: "desde 2025" },
     value: 1.5,
-    note: { en: "Web API for Paneleiros", pt: "Web API do Paneleiros" },
+    note: { en: "Web API for Paneleiro", pt: "Web API do Paneleiro" },
   },
 ];
 
