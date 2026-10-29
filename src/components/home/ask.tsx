@@ -161,7 +161,7 @@ const modelLabel = (model: string) =>
   model
     .split("/")
     .pop()!
-    .replace(/-(\d+)\.(\d+)$/, " $1.$2")
+    .replace(/-(\d+)[.-](\d+)$/, " $1.$2")
     .replace(/-/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 

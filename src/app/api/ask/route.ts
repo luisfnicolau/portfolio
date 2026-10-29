@@ -1,3 +1,4 @@
+import { anthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { checkBotId } from "botid/server";
 import { looksLikeInjection, LIMITS, parseAskRequest, RateLimiter } from "@/lib/chat/guard";
@@ -6,7 +7,13 @@ import { retrieve } from "@/lib/chat/retrieve";
 import type { AskEvent } from "@/lib/chat/protocol";
 import type { Locale } from "@/lib/i18n";
 
-const ASK_MODEL = process.env.ASK_MODEL ?? "anthropic/claude-haiku-5.5";
+// With ANTHROPIC_API_KEY set, Claude is called directly and billed to that Anthropic account.
+// Without it, the model goes through AI Gateway (OIDC on Vercel), where ASK_MODEL can name any model.
+const ANTHROPIC_MODEL = process.env.ASK_ANTHROPIC_MODEL ?? "claude-haiku-5-5";
+const ASK_MODEL = process.env.ANTHROPIC_API_KEY
+  ? `anthropic/${ANTHROPIC_MODEL}`
+  : (process.env.ASK_MODEL ?? "anthropic/claude-haiku-5.5");
+const model = () => (process.env.ANTHROPIC_API_KEY ? anthropic(ANTHROPIC_MODEL) : ASK_MODEL);
 export const maxDuration = 30;
 
 // Per server instance; the Vercel Firewall rule on this path is the limit shared by all of them.
@@ -89,7 +96,7 @@ export async function POST(request: Request) {
   const abort = AbortSignal.any([request.signal, AbortSignal.timeout(25_000)]);
   let failed = false;
   const result = streamText({
-    model: ASK_MODEL,
+    model: model(),
     instructions: instructions(locale, canary),
     prompt: userPrompt(question, history, retrieval.passages, locale),
     maxOutputTokens: 450,
