@@ -27,8 +27,8 @@
 
 ## ADR-06 · Scroll-driven CSS for motion
 
-**Decision:** reveals and bar growth use `animation-timeline: view()`; no JavaScript animation library.
-**Why:** nothing can stay hidden if a script fails, browsers without support show the content statically, and there is no JS cost. The range ends a fixed 120px after entry so tall blocks are not left faded while being read.
+**Decision:** reveals use `animation-timeline: view()`; no JavaScript animation library. Charts and bars do not animate.
+**Why:** nothing can stay hidden if a script fails, browsers without support show the content statically, and there is no JS cost. The range ends a fixed 120px after entry so tall blocks are not left faded while being read. Bars used to grow on scroll too, but inside an `overflow: hidden` track the animation bound to the track instead of the page and stalled at ~3%; a chart must never show a wrong length, so they are static now.
 
 ## ADR-07 · Social cards with `next/og` and bundled fonts
 
@@ -49,3 +49,9 @@
 
 **Decision:** `vercel.json` sets the build command to `npm run check && npm run build`. There is no GitHub Actions workflow.
 **Why:** GitHub Actions isn't available for this repository, and Vercel already builds every push. Running lint, typecheck and unit tests there means a failing check blocks the deploy, and production keeps serving the last good version. The end-to-end suite runs on demand against a deployment: `BASE_URL=https://lunico.dev npm run test:e2e`.
+
+## ADR-11 · Pick the language from the browser, keep English at the bare domain
+
+**Decision:** `src/proxy.ts` redirects visitors who prefer Portuguese (Accept-Language, else IP country) from English URLs to `/pt`; an explicit choice from the language switch is kept in a cookie and wins. `/pt` is never redirected.
+**Why:** Brazilian visitors should see Portuguese without hunting for a switch, while the main audience (international recruiters) and crawlers keep English at lunico.dev. The browser language is a better signal than the IP: a Brazilian recruiter at a US company may well browse in English. Only one-way redirects keep both languages indexable.
+

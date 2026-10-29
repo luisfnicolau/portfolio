@@ -313,7 +313,7 @@ export const projects: Project[] = [
     name: "Paneleiros",
     kind: "product",
     role: { en: "Founder & engineer", pt: "Fundador e engenheiro" },
-    period: { from: "2025", to: "present" },
+    period: { from: "2025-10", to: "2026-09" },
     status: "live",
     tagline: {
       en: "Live football fan app for iPhone and Android: real-time matches, push notifications and highlights.",

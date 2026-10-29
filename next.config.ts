@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // A stray lockfile in the home folder would otherwise widen the workspace root.
   outputFileTracingRoot: __dirname,
-  // Social cards that render on demand read these fonts from disk (src/lib/og.tsx).
-  outputFileTracingIncludes: { "/**": ["./src/assets/fonts/*.woff"] },
+  // Social cards that render on demand read these fonts and the headshot from disk (src/lib/og.tsx).
+  outputFileTracingIncludes: { "/**": ["./src/assets/fonts/*.woff", "./src/assets/photo/avatar.jpg"] },
   experimental: {
     // Two root layouts (English at /, Portuguese at /pt) need one 404 for both.
     globalNotFound: true,

@@ -18,12 +18,22 @@ Which files make up each feature, and their tests. Read the entry for your area 
 - Case study: `src/components/work/project-page.tsx` with `pipeline.tsx` (OlhoNaLei only), `benchmarks.tsx`, `poster.tsx`, `project-card.tsx`.
 - Shell: `src/components/site/` (header, footer, theme toggle, local clock, mobile menu, language hint, availability tab, root document with the theme script).
 - Routes: `src/app/(en)/…`, `src/app/(pt)/pt/…`, `src/app/global-not-found.tsx`.
-- Tests: `tests/e2e/smoke.spec.ts` (every sitemap page on desktop and mobile, language switch, theme, Ask, 404s, CVs, social cards).
+- Tests: `tests/e2e/smoke.spec.ts` (every sitemap page on Chromium desktop, a Pixel 7 and WebKit/Safari; language detection and switch, theme, Ask, charts with motion on, 404s, CVs, social cards).
 
 ## Ask box
 
 - Engine: `src/lib/ask.ts` (normalize, fuzzy word matching, scoring). Content: `src/content/ask.ts`. UI: `src/components/home/ask.tsx`; `hero.tsx` passes it one language's answers.
 - Gotcha: a keyword that is also an everyday word (`monitor`, `time`, `next`) steals questions. Add a phrase instead, and a test in `tests/unit/ask.test.ts`.
+
+## Language
+
+- `src/proxy.ts`: on English URLs, sends visitors who prefer Portuguese to `/pt`; `?lang=` from the switch links sets the `lang` cookie, which then wins. `/pt` URLs are never redirected.
+- `src/lib/language.ts` (`preferredLocale`: Accept-Language by q-value, then the IP country, then English), tested in `tests/unit/language.test.ts`; e2e "language detection".
+- `switchHref()` in `src/lib/i18n.ts` builds the switch links (header, footer, language hint).
+
+## Photo
+
+- `scripts/prepare-photo.mjs <photo>` writes `src/assets/photo/portrait.jpg` (About), `src/assets/photo/avatar.jpg` (hero, home social cards) and `public/luis-nicolau.jpg` (JSON-LD), with metadata stripped. Alt text in `profile.photo`.
 
 ## SEO and sharing
 
@@ -32,9 +42,10 @@ Which files make up each feature, and their tests. Read the entry for your area 
 
 ## Styling
 
-- `src/app/globals.css`: tokens (light, dark, no-JS dark), utilities (`text-metal`, `kicker`, `bg-grid`), scroll-driven `.reveal`/`.grow`.
+- `src/app/globals.css`: tokens (light, dark, no-JS dark), utilities (`text-metal`, `kicker`, `bg-grid`), the scroll-driven `.reveal`.
 - `src/app/fonts.ts`: Inter, Instrument Serif (italic), JetBrains Mono.
-- Gotcha: `.reveal` animates `transform`, so a hover lift on the same element is overridden; and never put `.grow` on a data chart (it would show wrong lengths mid-scroll).
+- Gotcha: `.reveal` animates `transform`, so a hover lift on the same element is overridden.
+- Gotcha: a scroll-driven animation (`view()`) binds to the nearest scroll container, and `overflow: hidden` makes one. A `.reveal` inside an `overflow-hidden` box measures that box, not the page (the skill bars once stalled at ~3% this way). Round corners with `overflow-clip` instead. Charts and bars never animate; `tests/e2e/smoke.spec.ts` ("charts, with motion") checks they are drawn to scale with motion on.
 
 ## Scripts and assets
 

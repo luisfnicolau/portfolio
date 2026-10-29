@@ -1,3 +1,5 @@
+import avatar from "@/assets/photo/avatar.jpg";
+import portrait from "@/assets/photo/portrait.jpg";
 import type { Localized, Metric } from "./types";
 
 export const site = {
@@ -58,6 +60,15 @@ export const profile = {
     en: "Campo Grande, Mato Grosso do Sul, Brazil",
     pt: "Campo Grande, Mato Grosso do Sul, Brasil",
   } satisfies Localized,
+  /** Made from the original with scripts/prepare-photo.mjs. public/luis-nicolau.jpg is the same headshot. */
+  photo: {
+    portrait,
+    avatar,
+    alt: {
+      en: "Luis Nicolau, smiling, in a black T-shirt against a gray background",
+      pt: "Luis Nicolau sorrindo, de camiseta preta, com fundo cinza",
+    } satisfies Localized,
+  },
   city: "Campo Grande",
   timeZone: "America/Campo_Grande",
   utcOffset: "UTC−4",

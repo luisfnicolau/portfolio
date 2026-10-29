@@ -12,6 +12,9 @@ const fonts = Promise.all([
   readFile(join(process.cwd(), "src/assets/fonts/instrument-serif-latin-400-italic.woff")),
   readFile(join(process.cwd(), "src/assets/fonts/jetbrains-mono-latin-500-normal.woff")),
 ]);
+const headshot = readFile(join(process.cwd(), "src/assets/photo/avatar.jpg")).then(
+  (data) => `data:image/jpeg;base64,${data.toString("base64")}`,
+);
 
 const colors = { bg: "#08080a", fg: "#f4f4f5", muted: "#a9a9b3", subtle: "#8c8c97", accent: "#ff7d43", line: "#222228" };
 
@@ -22,11 +25,14 @@ interface OgCard {
   accent?: string;
   subtitle: string;
   footer: string;
+  /** Show the headshot top right (home cards). */
+  photo?: boolean;
 }
 
 /** The social card shared by every page: dark, one accent, the site's own fonts. */
-export async function renderOg({ kicker, title, accent, subtitle, footer }: OgCard) {
+export async function renderOg({ kicker, title, accent, subtitle, footer, photo }: OgCard) {
   const [inter500, inter800, serif, mono] = await fonts;
+  const photoSrc = photo ? await headshot : null;
   return new ImageResponse(
     (
       <div
@@ -41,25 +47,26 @@ export async function renderOg({ kicker, title, accent, subtitle, footer }: OgCa
           backgroundSize: "100% 100%, 64px 64px, 64px 64px",
           color: colors.fg,
           fontFamily: "Inter",
+          position: "relative",
         }}
       >
+        {photoSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element -- Satori renders plain <img>, not next/image
+          <img
+            src={photoSrc}
+            alt=""
+            width={232}
+            height={232}
+            style={{ position: "absolute", top: 64, right: 72, borderRadius: 28, border: `2px solid ${colors.line}` }}
+          />
+        ) : null}
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 52,
-              height: 52,
-              borderRadius: 12,
-              backgroundColor: colors.fg,
-              color: colors.bg,
-              fontFamily: "JetBrains Mono",
-              fontSize: 20,
-            }}
-          >
-            LN
-          </div>
+          {/* The LN mark, as in src/components/ui/logo-mark.tsx and the favicon. */}
+          <svg viewBox="0 0 32 32" width={52} height={52} style={{ borderRadius: 11, border: `1px solid ${colors.line}` }}>
+            <rect width="32" height="32" rx="7" fill="#0d0c0b" />
+            <path d="M6 9h3.2v11.6H13V24H6z" fill="#f4f4f5" />
+            <path d="M15 24V9h3l4.8 9.2V9H26v15h-3l-4.8-9.2V24z" fill="#ff6b2c" />
+          </svg>
           <div style={{ display: "flex", fontFamily: "JetBrains Mono", fontSize: 22, color: colors.subtle }}>lunico.dev</div>
         </div>
 

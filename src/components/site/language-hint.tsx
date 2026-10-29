@@ -3,16 +3,22 @@
 import { X } from "lucide-react";
 import { useState, useSyncExternalStore } from "react";
 import { getDictionary } from "@/content/ui";
-import { htmlLang, otherLocale, type Locale } from "@/lib/i18n";
+import { htmlLang, otherLocale, switchHref, type Locale } from "@/lib/i18n";
+import { LANGUAGE_COOKIE } from "@/lib/language";
 
 const STORAGE_KEY = "language-hint";
 const noSubscription = () => () => {};
 
-/** Offers the other language when the browser's first language suggests it. Dismissal is remembered. */
+/**
+ * Offers the other language when the browser's first language suggests it. Rarely needed on English
+ * pages (src/proxy.ts already sends Portuguese browsers to /pt); it mostly helps someone who opened a
+ * /pt link in an English browser. Hidden once a language was chosen with the switch, or dismissed.
+ */
 export function LanguageHint({ locale, alternateHref }: { locale: Locale; alternateHref: string }) {
   const wanted = useSyncExternalStore(
     noSubscription,
     () => {
+      if (document.cookie.split("; ").some((c) => c.startsWith(`${LANGUAGE_COOKIE}=`))) return false;
       try {
         if (localStorage.getItem(STORAGE_KEY) === "dismissed") return false;
       } catch {
@@ -46,7 +52,7 @@ export function LanguageHint({ locale, alternateHref }: { locale: Locale; altern
     >
       <p className="min-w-0 flex-1 truncate text-muted">{t.text}</p>
       <a
-        href={alternateHref}
+        href={switchHref(alternateHref, other)}
         hrefLang={htmlLang[other]}
         className="rounded-full bg-accent px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap text-on-accent"
       >

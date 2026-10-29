@@ -1,6 +1,6 @@
 import { profile, site } from "@/content/profile";
 import { getDictionary } from "@/content/ui";
-import { htmlLang, otherLocale, type Locale } from "@/lib/i18n";
+import { htmlLang, otherLocale, switchHref, type Locale } from "@/lib/i18n";
 import { Container } from "../ui/container";
 
 export function Footer({ locale, alternateHref }: { locale: Locale; alternateHref: string }) {
@@ -23,7 +23,7 @@ export function Footer({ locale, alternateHref }: { locale: Locale; alternateHre
             {t.footer.updated} {site.updated[locale]}
           </p>
           <a
-            href={alternateHref}
+            href={switchHref(alternateHref, other)}
             hrefLang={htmlLang[other]}
             lang={htmlLang[other]}
             className="font-medium text-muted underline decoration-line-strong underline-offset-4 hover:text-fg"

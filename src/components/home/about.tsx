@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { profile } from "@/content/profile";
 import { getDictionary } from "@/content/ui";
 import type { Locale } from "@/lib/i18n";
@@ -10,14 +11,25 @@ export function About({ locale }: { locale: Locale }) {
   return (
     <Section id="about" index="01" kicker={t.kicker} title={t.title}>
       <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.6fr)] lg:gap-16">
-        <dl className="reveal grid content-start gap-px self-start overflow-hidden rounded-2xl border border-line bg-line">
-          {profile.facts.map((fact) => (
-            <div key={fact.label.en} className="flex flex-col gap-1 bg-bg px-5 py-4">
-              <dt className="kicker text-[0.65rem] text-subtle">{fact.label[locale]}</dt>
-              <dd className="text-sm font-medium">{fact.value[locale]}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="space-y-6 self-start">
+          <figure className="reveal mx-auto max-w-sm overflow-hidden rounded-2xl border border-line bg-surface-2 lg:max-w-none">
+            <Image
+              src={profile.photo.portrait}
+              alt={profile.photo.alt[locale]}
+              sizes="(min-width: 1024px) 370px, 384px"
+              placeholder="blur"
+              className="h-auto w-full"
+            />
+          </figure>
+          <dl className="reveal grid content-start gap-px overflow-clip rounded-2xl border border-line bg-line">
+            {profile.facts.map((fact) => (
+              <div key={fact.label.en} className="flex flex-col gap-1 bg-bg px-5 py-4">
+                <dt className="kicker text-[0.65rem] text-subtle">{fact.label[locale]}</dt>
+                <dd className="text-sm font-medium">{fact.value[locale]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
         <div className="reveal space-y-6 text-[1.05rem]/relaxed text-pretty text-muted">
           <p className="text-xl/relaxed font-medium text-fg sm:text-2xl/relaxed">{lead}</p>
           {paragraphs.map((paragraph) => (

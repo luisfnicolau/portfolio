@@ -2,6 +2,7 @@ import { profile, stats } from "@/content/profile";
 import { getProject } from "@/content/projects";
 import { getDictionary } from "@/content/ui";
 import type { Locale } from "./i18n";
+import { tidy } from "./typography";
 import { renderOg } from "./og";
 
 export function homeOg(locale: Locale) {
@@ -9,11 +10,14 @@ export function homeOg(locale: Locale) {
     kicker: profile.title[locale],
     title: profile.shortName,
     accent: profile.cardLine[locale],
-    subtitle: stats
-      .slice(0, 3)
-      .map((stat) => `${stat.value[locale]} ${stat.label[locale]}`)
-      .join(" · "),
+    subtitle: tidy(
+      stats
+        .slice(0, 3)
+        .map((stat) => `${stat.value[locale]} ${stat.label[locale]}`)
+        .join(" · "),
+    ),
     footer: profile.remote[locale],
+    photo: true,
   });
 }
 

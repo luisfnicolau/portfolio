@@ -1,4 +1,5 @@
 import { Download, Mail } from "lucide-react";
+import Image from "next/image";
 import { fallbackAnswer, fallbackLinks, intents } from "@/content/ask";
 import { contact, cv, profile, stats } from "@/content/profile";
 import { getDictionary } from "@/content/ui";
@@ -65,10 +66,19 @@ export function Hero({ locale }: { locale: Locale }) {
 
         <div className="mt-12 grid gap-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:items-end lg:gap-16">
           <div className="max-w-xl">
-            <p className="text-lg font-semibold tracking-tight">
-              {profile.shortName} <span className="font-normal text-subtle">·</span>{" "}
-              <span className="font-medium text-muted">{profile.title[locale]}</span>
-            </p>
+            <div className="flex items-center gap-4">
+              <Image
+                src={profile.photo.avatar}
+                alt=""
+                sizes="56px"
+                loading="eager"
+                className="size-14 shrink-0 rounded-full border border-line-strong object-cover"
+              />
+              <p className="text-lg font-semibold tracking-tight">
+                {profile.shortName} <span className="font-normal text-subtle">·</span>{" "}
+                <span className="font-medium text-muted">{profile.title[locale]}</span>
+              </p>
+            </div>
             <p className="mt-3 text-base/relaxed text-pretty text-muted">{profile.intro[locale]}</p>
             <p className="kicker mt-5 text-subtle">{profile.remote[locale]}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3">

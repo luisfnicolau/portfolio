@@ -118,7 +118,8 @@ export function ProjectPage({ project, locale }: { project: Project; locale: Loc
                   alt={project.image.alt[locale]}
                   sizes="(min-width: 1152px) 1088px, 100vw"
                   placeholder="blur"
-                  priority
+                  loading="eager"
+                  fetchPriority="high"
                   className="h-auto w-full"
                 />
               </BrowserFrame>

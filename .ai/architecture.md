@@ -27,6 +27,8 @@ Two root layouts, so `<html lang>` is correct without a redirect at `/`:
 
 Switching language crosses root layouts, which is a full page load; that is fine for a language switch.
 
+**Language detection** (`src/proxy.ts`): on the English URLs, a visitor whose browser prefers Portuguese (or, with no preference, whose IP is in a Portuguese-speaking country) is redirected to the same page under `/pt`. The switch links add `?lang=en|pt`; the proxy stores it in the `lang` cookie (one year) and redirects to the clean URL, and the cookie wins over detection afterwards. `/pt` URLs are never redirected, so crawlers index both languages.
+
 Unknown project slugs are rewritten to a non-existent path in `next.config.ts` (`beforeFiles`), so they get a real 404 status. The allowed list is `src/content/slugs.ts`, which must match `projects.ts` (a unit test checks it).
 
 ## Rendering

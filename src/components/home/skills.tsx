@@ -19,7 +19,7 @@ export function Skills({ locale }: { locale: Locale }) {
                   <span className="font-mono text-xs text-subtle">{skill.years[locale]}</span>
                 </div>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-surface-2" aria-hidden>
-                  <div className="grow h-full rounded-full bg-accent" style={{ width: `${Math.min(100, skill.value * 10)}%` }} />
+                  <div className="h-full rounded-full bg-accent" style={{ width: `${Math.min(100, skill.value * 10)}%` }} />
                 </div>
                 <p className="mt-1.5 text-xs text-subtle">{skill.note[locale]}</p>
               </li>

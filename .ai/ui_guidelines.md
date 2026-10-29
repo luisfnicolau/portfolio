@@ -32,8 +32,9 @@ Never use a raw hex in a component; add a token.
 
 ## Motion
 
-- Scroll-driven CSS only: `.reveal` (fade/rise over each element's first 120px on screen) and `.grow` (bars). Both off for `prefers-reduced-motion` and print.
-- No animation on charts that encode data (the experience timeline).
+- Scroll-driven CSS only: `.reveal` (fade/rise over each element's first 120px on screen). Off for `prefers-reduced-motion` and print.
+- Nothing that encodes data animates: the timeline, skill bars and benchmark bars are always drawn at their true length.
+- A `.reveal` element must not sit inside an `overflow-hidden` box (it would measure that box instead of the page): use `overflow-clip` to round corners.
 
 ## Layout
 

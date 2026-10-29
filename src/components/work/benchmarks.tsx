@@ -19,7 +19,7 @@ export function Benchmarks({ items, locale }: { items: Benchmark[]; locale: Loca
                   <dd className="font-mono text-muted tabular-nums">{item.before.text[locale]}</dd>
                 </div>
                 <div className="mt-2 h-2.5 rounded-full bg-surface-2" aria-hidden>
-                  <div className="grow h-full w-full rounded-full bg-line-strong" />
+                  <div className="h-full w-full rounded-full bg-line-strong" />
                 </div>
               </div>
               <div>
@@ -28,7 +28,7 @@ export function Benchmarks({ items, locale }: { items: Benchmark[]; locale: Loca
                   <dd className="font-mono font-semibold text-accent-ink tabular-nums">{item.after.text[locale]}</dd>
                 </div>
                 <div className="mt-2 h-2.5 rounded-full bg-surface-2" aria-hidden>
-                  <div className="grow h-full rounded-full bg-accent" style={{ width: `${ratio}%` }} />
+                  <div className="h-full rounded-full bg-accent" style={{ width: `${ratio}%` }} />
                 </div>
               </div>
             </dl>

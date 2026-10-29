@@ -29,6 +29,10 @@ How to keep the portfolio current. Every change ends with `npm run check`, and w
 - English: replace `public/cv/luis-nicolau-full-stack-cv-en.pdf` with Luis's new file (same name).
 - Portuguese: edit `cv/full-stack-pt.html` to match the English CV, then `npm run cv:pdf`. Check it still fits on two A4 pages.
 
+## Change the photo
+
+`node scripts/prepare-photo.mjs ~/path/to/photo.jpg`, adjusting `--face x,y` (centre of the face, as fractions) and `--portrait left,top,width` if the framing differs. Check the crops, then commit the three files it writes.
+
 ## Refresh screenshots
 
 `npm run screenshots` (all) or `npm run screenshots -- medha lore` (some). Review the images before committing.

@@ -19,6 +19,9 @@ export const sectionPath = (locale: Locale, id: string) => (locale === "en" ? `/
 export const workPath = (locale: Locale, slug: string) =>
   locale === "en" ? `/work/${slug}` : `/pt/work/${slug}`;
 
+/** A language-switch link: src/proxy.ts remembers the `lang` choice in a cookie. */
+export const switchHref = (path: string, locale: Locale) => `${path}?lang=${locale}`;
+
 /** hreflang map for `metadata.alternates.languages` and the sitemap. */
 export function languageAlternates(path: (locale: Locale) => string) {
   return { en: path("en"), "pt-BR": path("pt"), "x-default": path("en") };

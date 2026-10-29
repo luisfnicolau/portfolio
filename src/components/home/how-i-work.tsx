@@ -9,7 +9,7 @@ export function HowIWork({ locale }: { locale: Locale }) {
   const lesson = getProject("olhonalei")?.caseStudies?.[0]?.lesson?.[locale];
   return (
     <Section id="how-i-work" index="05" kicker={t.kicker} title={t.title}>
-      <ol className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <ol className="grid gap-px overflow-clip rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {principles.map((principle, index) => (
           <li key={principle.title.en} className="reveal bg-bg p-6 sm:p-7">
             <p className="font-mono text-xs text-accent-ink">{String(index + 1).padStart(2, "0")}</p>

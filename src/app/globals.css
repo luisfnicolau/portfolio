@@ -169,12 +169,6 @@
   }
 }
 
-@keyframes grow {
-  from {
-    transform: scaleX(0);
-  }
-}
-
 @keyframes blink {
   50% {
     opacity: 0;
@@ -185,6 +179,8 @@
  * Scroll-driven reveals: pure CSS, so nothing can stay hidden if a script fails. Ranges end a fixed
  * distance after entry, not a percentage of the element, so tall blocks (a case study on a phone)
  * are fully opaque after their first 120px on screen instead of staying faded while being read.
+ * view() binds to the nearest scroll container, and overflow: hidden makes one: give a .reveal
+ * element no overflow-hidden ancestor (use overflow-clip to round corners). Charts never animate.
  */
 @supports (animation-timeline: view()) {
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -192,13 +188,6 @@
       animation: reveal linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 120px;
-    }
-
-    .grow {
-      transform-origin: left;
-      animation: grow linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 220px;
     }
   }
 }
@@ -218,8 +207,7 @@
 }
 
 @media print {
-  .reveal,
-  .grow {
+  .reveal {
     animation: none !important;
   }
 }

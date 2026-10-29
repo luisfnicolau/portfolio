@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { getDictionary } from "@/content/ui";
-import { homePath, htmlLang, otherLocale, sectionPath, type Locale } from "@/lib/i18n";
+import { homePath, htmlLang, otherLocale, sectionPath, switchHref, type Locale } from "@/lib/i18n";
 import { Container } from "../ui/container";
+import { LogoMark } from "../ui/logo-mark";
 import { LocalClock } from "./local-clock";
 import { MobileMenu } from "./mobile-menu";
 import { ThemeToggle } from "./theme-toggle";
@@ -32,9 +33,7 @@ export function Header({ locale, alternateHref }: { locale: Locale; alternateHre
       <header className="sticky top-0 z-40 border-b border-line bg-bg/75 backdrop-blur-xl">
         <Container className="relative flex h-16 items-center gap-3">
           <Link href={home} className="group flex items-center gap-2.5" aria-label="Luis Nicolau">
-            <span className="grid size-8 place-items-center rounded-lg bg-fg font-mono text-[0.7rem] font-bold tracking-tight text-bg transition-colors group-hover:bg-accent group-hover:text-on-accent">
-              LN
-            </span>
+            <LogoMark className="size-8 rounded-[7px] transition-transform duration-200 group-hover:scale-105 dark:ring-1 dark:ring-line-strong" />
             <span className="hidden text-sm font-semibold tracking-tight sm:block">Luis Nicolau</span>
           </Link>
 
@@ -56,7 +55,7 @@ export function Header({ locale, alternateHref }: { locale: Locale; alternateHre
           <div className="ml-auto flex items-center gap-1 lg:ml-0">
             <LocalClock label={t.header.localTime} className="mr-2 hidden xl:inline-flex" />
             <a
-              href={alternateHref}
+              href={switchHref(alternateHref, other)}
               hrefLang={htmlLang[other]}
               lang={htmlLang[other]}
               aria-label={t.header.switchLanguageLabel}

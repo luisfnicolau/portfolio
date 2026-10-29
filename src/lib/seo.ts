@@ -50,6 +50,7 @@ export function personJsonLd(locale: Locale) {
     jobTitle: profile.jobTitle[locale],
     description: profile.oneLiner[locale],
     url: site.url,
+    image: `${site.url}/luis-nicolau.jpg`,
     email: `mailto:${contact.email}`,
     address: {
       "@type": "PostalAddress",

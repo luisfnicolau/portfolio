@@ -132,3 +132,59 @@ test.describe("files and metadata", () => {
     expect(body).toContain("Sitemap: https://lunico.dev/sitemap.xml");
   });
 });
+
+// Data bars must show their true length with animations on: a scroll-linked animation once left
+// them at ~3% (their rounded track has overflow: hidden, which counts as a scroll container).
+test.describe("charts, with motion", () => {
+  test.use({ contextOptions: { reducedMotion: "no-preference" } });
+
+  test("skill and benchmark bars are drawn to scale", async ({ page }) => {
+    await page.goto("/");
+    const skills = page.locator("#skills li:has(> div[aria-hidden]) > div[aria-hidden] > div");
+    await skills.first().scrollIntoViewIfNeeded();
+    await page.waitForTimeout(400);
+    const ratios = await skills.evaluateAll((bars) =>
+      bars.map((bar) => bar.getBoundingClientRect().width / bar.parentElement!.getBoundingClientRect().width),
+    );
+    // Node.js and SQL are ~10 years, C#/.NET since 2025 (1.5 on the 10-year scale).
+    expect(ratios[0]).toBeGreaterThan(0.97);
+    expect(ratios.at(-1)).toBeGreaterThan(0.12);
+
+    await page.goto("/work/olhonalei");
+    const after = page.locator('section[aria-labelledby="benchmarks"] dl > div:last-child div[aria-hidden] > div');
+    await after.first().scrollIntoViewIfNeeded();
+    await page.waitForTimeout(400);
+    const latency = await after.evaluateAll((bars) =>
+      bars.map((bar) => bar.getBoundingClientRect().width / bar.parentElement!.getBoundingClientRect().width),
+    );
+    // ~0.55 s of ~1.49 s end to end: about 37% of the "before" bar.
+    expect(latency[2]).toBeGreaterThan(0.33);
+    expect(latency[2]).toBeLessThan(0.41);
+  });
+});
+
+test.describe("language detection", () => {
+  test.describe("in a Portuguese browser", () => {
+    test.use({ locale: "pt-BR" });
+
+    test("lands on Portuguese, and a switch to English sticks", async ({ page }) => {
+      await page.goto("/");
+      await expect(page).toHaveURL(/\/pt$/);
+      await page.goto("/work/medha");
+      await expect(page).toHaveURL(/\/pt\/work\/medha$/);
+
+      await page.locator('header a[hreflang="en"]').click();
+      await expect(page).toHaveURL(/\/work\/medha$/);
+      await expect(page.locator("html")).toHaveAttribute("lang", "en");
+      await page.goto("/");
+      await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    });
+  });
+
+  test("an English browser keeps the URL it opened, /pt included", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await page.goto("/pt/work/medha");
+    await expect(page).toHaveURL(/\/pt\/work\/medha$/);
+  });
+});
