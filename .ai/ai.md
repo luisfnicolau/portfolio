@@ -69,5 +69,5 @@ vitest 5            unit tests: Ask matching, content completeness, sitemap, typ
 9. **Read [codebase-map.md](codebase-map.md) first; keep it current** in the same commit as the change.
 10. **Parallel agents work in separate git worktrees** ([workflows/parallel-agents.md](workflows/parallel-agents.md)), and a worktree is removed once merged.
 11. **Declare your work in project memory before you start, and close it when you stop** ([workflows/project-memory.md](workflows/project-memory.md)).
-12. **A new GitHub Actions workflow must run once and pass, or be disabled** (watch it with `gh run watch`).
+12. **Vercel is the CI:** every build runs `npm run check` first (ADR-10). Before and after a change that affects production (routing, domains, config), run `BASE_URL=https://lunico.dev npm run test:e2e`. If a GitHub Actions workflow is ever added, it must run once and pass, or be disabled.
 13. `architecture.md` and `docs/ARD.md` are the source of truth for structure decisions; update them when a decision changes.

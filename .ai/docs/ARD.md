@@ -13,7 +13,7 @@
 ## ADR-03 · Content as typed data
 
 **Decision:** all copy in `src/content/*.ts`, every string `{ en, pt }`, checked by unit tests.
-**Why:** Luis (or an agent) adds a project by editing one file; a missing translation fails CI instead of shipping a blank.
+**Why:** Luis (or an agent) adds a project by editing one file; a missing translation fails the build instead of shipping a blank.
 
 ## ADR-04 · Ask box by keyword matching, not an LLM
 
@@ -44,3 +44,8 @@
 
 **Decision:** none at launch.
 **Why:** mailto, WhatsApp and LinkedIn are enough, and a portfolio has no need to track visitors. Vercel Web Analytics (cookieless) can be turned on later if Luis wants numbers.
+
+## ADR-10 · Checks run in the Vercel build, not GitHub Actions
+
+**Decision:** `vercel.json` sets the build command to `npm run check && npm run build`. There is no GitHub Actions workflow.
+**Why:** GitHub Actions isn't available for this repository, and Vercel already builds every push. Running lint, typecheck and unit tests there means a failing check blocks the deploy, and production keeps serving the last good version. The end-to-end suite runs on demand against a deployment: `BASE_URL=https://lunico.dev npm run test:e2e`.

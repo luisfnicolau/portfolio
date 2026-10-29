@@ -32,7 +32,7 @@ Node 22 or newer.
 | `npm run screenshots -- <name>` | recapture product screenshots into `src/assets/work/` |
 | `npm run cv:pdf` | print the Portuguese CV from `cv/full-stack-pt.html` to `public/cv/` |
 
-CI runs all of it on every push and pull request.
+Every push to `main` deploys to Vercel, and the Vercel build runs `npm run check` first: a failing check stops the deploy and the live site keeps the last good version.
 
 ## Adding a project
 

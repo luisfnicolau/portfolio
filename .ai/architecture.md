@@ -38,8 +38,8 @@ Unknown project slugs are rewritten to a non-existent path in `next.config.ts` (
 
 ## Hosting
 
-- **Vercel** project `portfolio`, production branch `main`, deploys on push.
-- **Domain:** `lunico.dev` (apex is primary; `www` redirects to it). DNS is at Cloudflare, records set to "DNS only".
+- **Vercel** project `portfolio` (team `luis-felipe-nicolaus-projects`), production branch `main`, deploys on push. `vercel.json` pins the framework (`nextjs`), runs `npm run check` before `next build`, and redirects `www` to the apex.
+- **Domain:** `lunico.dev` (apex is primary; `www` redirects to it). DNS is at Cloudflare: two `A` records on the apex (`216.150.1.1`, `216.150.16.1`) and a `www` CNAME to the project's `vercel-dns-016.com` host, all "DNS only". The zone also holds other projects' records (outpost, app.outpost, lore, loreapp, turn.chamego, Brevo mail records): never touch those. Agents change DNS with the workspace Cloudflare token, without reading it: `lore secrets run --workspace luisfnicolau --project _luisfnicolau --env prod -- <command>` (lore note `notes/cloudflare-token.md`).
 - Preview deployments are not indexed (Vercel adds `X-Robots-Tag: noindex`).
 
 ## Data model (content)
