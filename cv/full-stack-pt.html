@@ -1,0 +1,323 @@
+<!doctype html>
+<!--
+  Source of public/cv/luis-nicolau-full-stack-cv-pt.pdf. Rebuild with `npm run cv:pdf`.
+  Mirrors the English full-stack CV (public/cv/luis-nicolau-full-stack-cv-en.pdf); when one changes,
+  change the other. Same look as the original: Carlito, navy headings, A4.
+-->
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Currículo · Luis Felipe Moraes Nicolau</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&display=block" rel="stylesheet" />
+    <style>
+      @page {
+        size: A4;
+        margin: 12mm 15mm 12mm 15mm;
+      }
+      :root {
+        --navy: #1f3a5f;
+        --ink: #111111;
+        --gray: #5f5f5f;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Carlito", "Calibri", sans-serif;
+        font-size: 10.4pt;
+        line-height: 1.3;
+        color: var(--ink);
+      }
+      a {
+        color: var(--navy);
+        text-decoration: none;
+      }
+      h1 {
+        margin: 0;
+        font-size: 19pt;
+        line-height: 1.15;
+        color: var(--navy);
+      }
+      .title {
+        margin: 2pt 0 0;
+        font-weight: 700;
+        font-size: 11.2pt;
+      }
+      .muted {
+        color: var(--gray);
+      }
+      .contact {
+        margin: 1pt 0 0;
+      }
+      .contact .sep {
+        color: var(--gray);
+        padding: 0 4pt;
+      }
+      /* Lines may break between contact items, never inside an address. */
+      .contact a,
+      .contact .item {
+        white-space: nowrap;
+      }
+      h2 {
+        margin: 10pt 0 4pt;
+        padding-bottom: 2pt;
+        border-bottom: 1px solid var(--navy);
+        color: var(--navy);
+        font-size: 11pt;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 0;
+      }
+      .skills p {
+        margin: 0 0 2pt;
+      }
+      .intro {
+        margin-bottom: 5pt;
+        font-style: italic;
+        color: var(--gray);
+      }
+      .entry {
+        margin: 0 0 6pt;
+      }
+      /* An entry may split across pages, but only between bullets, never right after its heading. */
+      .head,
+      .sub {
+        break-after: avoid;
+      }
+      li {
+        break-inside: avoid;
+      }
+      .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12pt;
+      }
+      .when {
+        color: var(--gray);
+        white-space: nowrap;
+      }
+      .sub {
+        font-style: italic;
+        color: var(--gray);
+        margin-bottom: 2pt;
+      }
+      ul {
+        margin: 0;
+        padding-left: 15pt;
+      }
+      li {
+        margin: 0 0 1.5pt;
+        padding-left: 2pt;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Luis Felipe Moraes Nicolau</h1>
+      <p class="title">Engenheiro Full Stack Sênior · Produtos com IA (TypeScript · Python · LLM/RAG)</p>
+      <p class="muted">
+        Remoto, Brasil (UTC−4) · sobreposição total com o horário comercial dos EUA · disponível em tempo integral · aberto a
+        contratos (PJ ou contractor)
+      </p>
+      <p class="contact">
+        <span class="item">+55 21 99540-3334</span><span class="sep">|</span><a href="mailto:luisfnicolau@gmail.com">luisfnicolau@gmail.com</a
+        ><span class="sep">|</span><a href="https://www.linkedin.com/in/luis-felipe-nicolau">linkedin.com/in/luis-felipe-nicolau</a
+        ><span class="sep">|</span><a href="https://github.com/luisfnicolau">github.com/luisfnicolau</a
+        ><span class="sep">|</span><a href="https://lunico.dev/pt">lunico.dev</a>
+      </p>
+    </header>
+
+    <h2>Resumo</h2>
+    <p>
+      Engenheiro full stack sênior com mais de 12 anos entregando produtos de ponta a ponta em TypeScript, React, Node.js e
+      Python, com foco recente em funcionalidades de LLM/RAG em produção. Recentemente projetei e construí sozinho uma
+      plataforma civic-tech: mais de 167 mil projetos de lei federais, busca semântica híbrida em PostgreSQL + pgvector
+      (latência de busca reduzida de ~1,85&nbsp;s para ~8&nbsp;ms) e um pipeline de análise com Claude e controle de custos.
+      Confortável em assumir problemas ambíguos, do modelo de dados ao deploy; antes fui Tech Lead na Matrix Energia e
+      cofundador/CTO de um produto de edtech com mais de 100 mil usuários.
+    </p>
+
+    <h2>Competências</h2>
+    <div class="skills">
+      <p><b>Frontend:</b> TypeScript, React 19, Next.js 15 (Server Components, ISR), Tailwind CSS, Vite</p>
+      <p>
+        <b>Backend e dados:</b> Node.js/Express, Python/FastAPI, REST, GraphQL (Apollo); PostgreSQL (full-text,
+        pgvector/HNSW, RLS), Redis, MySQL, SQL Server, Neo4j, Firestore
+      </p>
+      <p>
+        <b>Outras linguagens:</b> C#/.NET 8 (EF Core, Hangfire, SignalR), Java (Spring Boot), Python web (Django, Flask,
+        templates Jinja), Go (básico)
+      </p>
+      <p>
+        <b>Cloud e operação:</b> AWS (Lambda, SQS, ECS, EC2, MSK/Kafka), GCP (Cloud Run, Cloud Functions, Pub/Sub), Docker,
+        GitHub Actions, Vercel, Railway, Supabase, Sentry
+      </p>
+      <p>
+        <b>IA:</b> APIs da Anthropic (Claude) e da OpenAI, RAG, embeddings, LangChain, Qdrant, inferência em lote e controle
+        de custos de LLM; uso diário de Claude Code e Cursor
+      </p>
+    </div>
+
+    <h2>Produtos que fundei e construí</h2>
+    <p class="intro">
+      Produtos independentes que construí de ponta a ponta. OlhoNaLei e Paneleiros estão no ar e exigem pouca manutenção,
+      por isso estou disponível em tempo integral.
+    </p>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>OlhoNaLei (olhonalei.com)</b> — Fundador e único engenheiro</p>
+        <p class="when">2026 – Atual</p>
+      </div>
+      <p class="sub">Plataforma civic-tech sem fins lucrativos que acompanha a legislação federal · Python/FastAPI, Next.js, PostgreSQL</p>
+      <ul>
+        <li>
+          Construí a plataforma inteira sozinho (pipeline de ingestão, API REST, análise por IA, frontend, infraestrutura),
+          acompanhando mais de 167.000 projetos de lei federais.
+        </li>
+        <li>
+          Escrevi um pipeline em Python resumível que unifica as APIs de dados abertos da Câmara e do Senado num único modelo;
+          um backfill limitado por orçamento recuperou mais de 8.300 projetos históricos que faltavam.
+        </li>
+        <li>
+          Construí busca híbrida (full-text do PostgreSQL + pgvector) e depois reconstruí o índice HNSW com quantização
+          binária e rerank: índice de 1,3&nbsp;GB para 69&nbsp;MB, latência de ~1.850&nbsp;ms para ~8&nbsp;ms num Postgres com
+          memória limitada.
+        </li>
+        <li>
+          Construí um pipeline de análise com Claude (mais de 29.000 resumos em linguagem simples, notas de impacto fiscal e
+          detecção de “jabutis”) usando a Message Batches API e tetos mensais de orçamento.
+        </li>
+        <li>
+          Entreguei o site público e o console administrativo em Next.js 15 / React 19 / TypeScript / Tailwind; diagnostiquei
+          e eliminei um estouro de custo serverless de ~39.000 invocações.
+        </li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>Paneleiros</b> — Fundador e engenheiro</p>
+        <p class="when">2025 – Atual</p>
+      </div>
+      <p class="sub">
+        App de futebol para torcedores, no ar (Flutter iOS/Android + admin em Nuxt) · C#/.NET 8, EF Core, Hangfire, SignalR,
+        Redis, MySQL
+      </p>
+      <ul>
+        <li>
+          Construí a Web API em .NET 8 por trás do app e do painel administrativo: jobs recorrentes no Hangfire monitoram
+          partidas ao vivo e enviam atualizações aos clientes via SignalR, com dados da Sportmonks, push pela OneSignal e um
+          pipeline de melhores momentos (ScoreBat + FFmpeg + S3).
+        </li>
+        <li>
+          Eliminei o esgotamento de conexões e as notificações duplicadas em jogos de grande audiência, trocando chamadas HTTPS
+          paralelas por usuário por envios em lote na OneSignal, e tornei a marcação de “já enviado” independente de falhas
+          no push.
+        </li>
+        <li>Adicionei uma proteção que encerra jobs recorrentes órfãos, canários de frescor de dados e testes de regressão para bugs de produção.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>SenseComment</b> — Fundador e engenheiro</p>
+        <p class="when">2025 – 2026</p>
+      </div>
+      <p class="sub">SaaS construído sobre as APIs do YouTube, com pagamentos via Hotmart · React, Node.js, GCP/AWS</p>
+      <ul>
+        <li>
+          Construí e operei o produto como engenheiro principal em React, TypeScript e Node.js; cresceu para mais de 500
+          assinantes pagantes e mais de US$&nbsp;50&nbsp;mil de MRR no pico.
+        </li>
+        <li>
+          Operei o backend na GCP (Cloud Run, Cloud Functions, Pub/Sub) e na AWS Lambda, com filas e jobs agendados projetados
+          para serem idempotentes sob retentativas e escritas concorrentes.
+        </li>
+        <li>Construí um assistente de suporte com RAG (OpenAI, LangChain, Qdrant) que reduziu o atendimento manual em ~60%.</li>
+        <li>
+          Trabalhei orientado a especificação com agentes de IA: escrevia os critérios de aceite, deixava o agente rascunhar e
+          revisava o plano, corrigindo decisões de arquitetura erradas antes do merge.
+        </li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>EcoDoctor</b> — Fundador e engenheiro líder</p>
+        <p class="when">2023 – 2025</p>
+      </div>
+      <p class="sub">Plataforma de pagamentos em saúde · Manaus, Brasil</p>
+      <ul>
+        <li>
+          Construí a plataforma em Node.js + TypeScript com integrações de pagamento; ela processou mais de R$&nbsp;5&nbsp;milhões em
+          transações no primeiro ano.
+        </li>
+        <li>Projetei a camada de dados em MySQL, com Redis para cache e filas; rodei os serviços em Docker na AWS (Lambda, SQS, ECS).</li>
+      </ul>
+    </div>
+
+    <h2>Experiência profissional</h2>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>The Contract Network</b> — Engenheiro Full Stack Sênior (Aplicações com IA)</p>
+        <p class="when">2023 – 2025</p>
+      </div>
+      <p class="sub">Contractor via Deel · remoto · empresa dos EUA (Geórgia)</p>
+      <ul>
+        <li>Trabalho full stack num produto de análise de contratos baseado em LLMs: Node.js + TypeScript, Apollo GraphQL e Neo4j na AWS.</li>
+        <li>Trabalhei com o time de IA/ML para levar as saídas dos modelos à aplicação e às suas APIs.</li>
+        <li>
+          Construí a infraestrutura na AWS como código (Lambda, SQS, MSK/Kafka, ECS), com deploys automatizados de containers,
+          e otimizei os caminhos de leitura e escrita do Neo4j.
+        </li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>Matrix Energia</b> — Tech Lead / Engenheiro Full Stack</p>
+        <p class="when">2022 – 2024</p>
+      </div>
+      <p class="sub">São Paulo, Brasil</p>
+      <ul>
+        <li>Liderei um time full stack construindo serviços em Node.js, APIs REST e mensageria integrados a AWS e Azure.</li>
+        <li>Implantei padrões de CI, code review e testes que reduziram os incidentes em produção em ~30%.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="head">
+        <p><b>Jovens Gênios</b> — Cofundador e CTO</p>
+        <p class="when">2017 – 2022</p>
+      </div>
+      <p class="sub">Rio de Janeiro, Brasil · edtech</p>
+      <ul>
+        <li>Cofundei a empresa e liderei a engenharia; os apps web e mobile passaram de 100.000 usuários.</li>
+        <li>Escolhi a stack (Node.js, bancos relacionais, cloud) e o processo de entrega; a empresa chegou a um valuation de ~R$&nbsp;100&nbsp;milhões.</li>
+      </ul>
+    </div>
+
+    <p>
+      <b>Antes (2014 – 2018):</b> desenvolvedor full stack e Android na Wikki Brasil, na Caronaê e na Fluxo Consultoria,
+      construindo sistemas web, APIs REST e um app Android de caronas.
+    </p>
+
+    <h2>Formação e certificações</h2>
+    <p>
+      Universidade Federal do Rio de Janeiro (UFRJ), Engenharia Eletrônica e de Computação (incompleta), 2012 – 2017. Saí para
+      cofundar a Jovens Gênios.
+    </p>
+    <p>Harvard CS50 · Udacity Android Nanodegree · Google Project Management</p>
+
+    <h2>Idiomas</h2>
+    <p>Português (nativo) · Inglês (avançado) · Espanhol (intermediário)</p>
+  </body>
+</html>
