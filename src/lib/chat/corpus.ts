@@ -219,9 +219,40 @@ function workStylePassages(): Passage[] {
   ];
 }
 
+const AI_WORK = /\b(AI|LLMs?|Claude|semantic|embeddings?|RAG|Whisper|AI\/ML|agents?)\b/;
+
+/**
+ * One passage that spans every AI-related role and project, oldest first, so a broad question
+ * ("what has he built with AI?") retrieves the whole arc instead of the single closest project.
+ */
+function aiOverviewPassage(): Passage {
+  return {
+    id: "ai-overview",
+    title: { en: "Luis's AI and LLM work, across roles and products", pt: "Trabalho do Luis com IA e LLMs, em empregos e produtos" },
+    href: both((locale) => sectionPath(locale, "work")),
+    text: both((locale) => {
+      const roles = employment
+        .filter((role) => AI_WORK.test(role.bullets.en.join(" ")))
+        .map((role) => {
+          const picked = role.bullets[locale].filter((_, index) => AI_WORK.test(role.bullets.en[index]));
+          return `- ${role.company}, ${role.title[locale]} (${formatPeriod(role.period, locale)}): ${picked.join(" ")}`;
+        });
+      const products = [...projects]
+        .sort((a, b) => a.period.from.localeCompare(b.period.from))
+        .filter((project) => AI_WORK.test(`${project.tagline.en} ${project.highlights.en.join(" ")}`))
+        .map((project) => {
+          const picked = project.highlights[locale].filter((_, index) => AI_WORK.test(project.highlights.en[index]));
+          return `- ${project.name} (${formatPeriod(project.period, locale)}): ${project.tagline[locale]} ${picked.join(" ")}`.trim();
+        });
+      return lines(...roles, ...products, agentTools[locale]);
+    }),
+  };
+}
+
 /** Everything the chat may say, built from the same content as the pages, so the two never drift apart. */
 export const passages: Passage[] = [
   ...profilePassages(),
+  aiOverviewPassage(),
   ...projectPassages(),
   ...experiencePassages(),
   ...skillPassages(),

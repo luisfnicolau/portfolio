@@ -111,7 +111,7 @@ describe("prompt", () => {
   it("carries the canary and the facts-only rule", () => {
     const text = instructions("pt", "canary-123");
     expect(text).toContain("canary-123");
-    expect(text).toContain("Use only the facts inside <passages>");
+    expect(text).toContain("Use only the facts inside <facts>");
     expect(text).toContain("Brazilian Portuguese");
   });
 });

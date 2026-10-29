@@ -99,8 +99,10 @@ export async function POST(request: Request) {
     model: model(),
     instructions: instructions(locale, canary),
     prompt: userPrompt(question, history, retrieval.passages, locale),
-    maxOutputTokens: 450,
-    temperature: 0.2,
+    maxOutputTokens: 700,
+    // A short, grounded answer needs no hidden reasoning: thinking would spend the output budget
+    // before the reply starts (Claude Haiku 5.5 thinks adaptively by default).
+    providerOptions: { anthropic: { thinking: { type: "disabled" }, effort: "low" } },
     maxRetries: 1,
     abortSignal: abort,
     onError({ error }) {
@@ -136,7 +138,11 @@ export async function POST(request: Request) {
             send(controller, { type: "text", text: delta });
           }
           if (outcome === "answered") {
-            if (failed || !text.trim()) {
+            const cutShort = (await Promise.resolve(result.finishReason).catch(() => "error")) === "length";
+            if (cutShort) {
+              outcome = "cut-short";
+              send(controller, { type: "error", reason: "unavailable" });
+            } else if (failed || !text.trim()) {
               outcome = "failed";
               send(controller, { type: "error", reason: "unavailable" });
             } else send(controller, { type: "done" });

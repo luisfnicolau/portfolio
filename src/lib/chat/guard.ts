@@ -53,7 +53,7 @@ const INJECTION = [
   /\b(ignore|esqueca|desconsidere|ignora)\b.{0,40}\b(instrucoes|instrucao|regras|prompt|anteriores?)\b/,
   /\b(prompt|mensagem|instrucoes) (do sistema|de sistema|inicia(l|is)|ocultas?)\b/,
   /\b(finja|fingir|aja como|voce agora e|a partir de agora voce)\b/,
-  /<\/?(system|instructions|context|passage|question)>/,
+  /<\/?(system|instructions|context|passages?|facts?|question)>/,
 ];
 
 export function looksLikeInjection(text: string): boolean {
