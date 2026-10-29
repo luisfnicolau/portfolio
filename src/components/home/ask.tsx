@@ -193,7 +193,7 @@ export function Ask({ locale, entries, fallback, copy }: AskProps) {
   function keywordAnswer(question: string, note?: string): Partial<Message> {
     const match = matchIntent(question, entries);
     const reply = match ? match.intent : fallback;
-    return { source: "keyword", status: "done", answer: reply.answer, links: reply.links, note, passages: [] };
+    return { source: "keyword", status: "done", answer: reply.answer, links: reply.links, note, passages: [], meta: undefined };
   }
 
   async function ask(question: string) {

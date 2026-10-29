@@ -103,6 +103,7 @@ test.describe("home", () => {
     const log = page.locator('[aria-live="polite"]').first();
     await expect(log.getByText("The AI chat is unavailable right now")).toBeVisible();
     await expect(log.getByText("full-time or contract roles, remote from Campo Grande").first()).toBeVisible();
+    await expect(log.getByText("hybrid RAG")).toHaveCount(0);
     await page.getByLabel("Your question").fill("how fast is the vector search?");
     await page.getByLabel("Your question").press("Enter");
     await expect(log.getByText("~1,850").first()).toBeVisible();
